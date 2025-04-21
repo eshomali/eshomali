@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 32 32">
+  <!-- Definitions for filters -->
+  <defs>
+    <!-- Glow Effect -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur"/>
+      <feFlood flood-color="#A5B4FC" flood-opacity="0.5"/>
+      <feComposite in2="blur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <!-- Shadow Effect -->
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="1" result="blur"/>
+      <feOffset dx="1" dy="1" result="offsetBlur"/>
+      <feFlood flood-color="#000000" flood-opacity="0.5"/>
+      <feComposite in2="offsetBlur" operator="in"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Letter E (Solid Yellow/Amber, Glow) -->
+  <text x="12" y="18" font-family="Bebas Neue, sans-serif" font-weight="400" font-size="16" fill="#F9FAFB" text-anchor="middle" filter="url(#glow)">E</text>
+
+  <!-- Letter S (Solid Purple, Rotated, Shadow) -->
+  <text x="20" y="22" font-family="Bebas Neue, sans-serif" font-weight="400" font-size="16" fill="#6366F1" text-anchor="middle" transform="rotate(5 20 22)" filter="url(#shadow)">S</text>
+</svg>
