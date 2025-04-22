@@ -39,7 +39,7 @@ const mockProjects = [
     title: 'E-Commerce Platform',
     slug: 'e-commerce-platform',
     description: 'A full-featured e-commerce platform with real-time inventory management and payment processing.',
-    image: 'https://via.placeholder.com/800x600?text=E-Commerce+Platform',
+    image: '../../images/placeholder.jpg',
     category: 'E-commerce',
     category_slug: 'e-commerce',
     client: 'RetailGrowth Inc.',
@@ -47,7 +47,7 @@ const mockProjects = [
     demo_url: 'https://retailgrowth-demo.com',
     featured: true,
     technologies: ['React', 'Node.js', 'Express', 'MySQL', 'Tailwind CSS']
-  },
+  }, /*
   {
     id: 2,
     title: 'Health Monitoring App',
@@ -117,17 +117,17 @@ const mockProjects = [
     demo_url: 'https://efficiency-suite.com',
     featured: false,
     technologies: ['React', 'Node.js', 'Express', 'MySQL', 'TypeScript']
-  }
+  } */
 ];
 
-const mockCategories = [
+const mockCategories = [ /*
   { id: 1, name: 'Web Development', slug: 'web-development' },
   { id: 2, name: 'Mobile App', slug: 'mobile-app' },
   { id: 3, name: 'UI/UX Design', slug: 'ui-ux-design' },
-  { id: 4, name: 'E-commerce', slug: 'e-commerce' }
+  { id: 4, name: 'E-commerce', slug: 'e-commerce' } */
 ];
 
-const mockTestimonials = [
+const mockTestimonials = [ /*
   {
     id: 1,
     name: 'Sarah Johnson',
@@ -167,7 +167,7 @@ const mockTestimonials = [
     quote: 'The work on our enterprise dashboard was exceptional. He created an intuitive interface that simplified complex data visualization for our users. His communication throughout the project was clear and professional, making the entire process smooth and efficient.',
     rating: 4,
     featured: false
-  }
+  } */
 ];
 
 /**

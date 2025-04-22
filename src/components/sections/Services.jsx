@@ -164,7 +164,8 @@ const Services = () => {
                 </div>
                 
                 <div className="service-cta">
-                  <Button 
+                  {/*
+                  <Button
                     to={`/services/${service.id}`}
                     variant="primary"
                     aria-label={`Learn more about my ${service.title} services`}
@@ -177,7 +178,7 @@ const Services = () => {
                     aria-label="Contact me about this service"
                   >
                     Request a Quote
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>
