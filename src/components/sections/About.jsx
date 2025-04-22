@@ -1,6 +1,7 @@
 // src/components/sections/About.jsx
 import { useState } from 'react';
 import Button from '../common/Button';
+import aboutImage from '../assets/images/about-large.jpg';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('skills');
@@ -74,7 +75,7 @@ const About = () => {
           <div className="about-image">
             <div className="image-wrapper">
               <img 
-                src="src/assets/images/about-large.jpg"
+                src={aboutImage}
                 alt="Essa Shomali - Professional App Developer"
                 loading="lazy"
                 style={{

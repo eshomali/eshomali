@@ -2,6 +2,7 @@
 
 import { Helmet } from 'react-helmet-async';
 import Button from '../components/common/Button';
+import aboutImage from '../assets/images/about-large.jpg';
 
 const AboutPage = () => {
   return (
@@ -41,7 +42,7 @@ const AboutPage = () => {
                 }}
             >
               <img
-                  src="src/assets/images/about-large.jpg"
+                  src={aboutImage}
                   alt="Essa Shomali - Professional App Developer"
                   loading="lazy"
                   style={{
