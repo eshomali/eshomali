@@ -5,7 +5,7 @@
   "homepage": "https://eshomali.github.io/",
   "scripts": {
     "dev": "vite",
-    "build": "cross-env NODE_ENV=production vite build",
+    "build": "vite build --mode production",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",

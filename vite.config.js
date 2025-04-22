@@ -3,39 +3,34 @@ import react from '@vitejs/plugin-react';
 import { resolve } from 'path';
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  const isProduction = mode === 'production';
-  
-  return {
-    plugins: [
-      react({
-        // Force React to production mode when building for production
-        babel: {
-          plugins: [
-            isProduction && ['transform-react-remove-prop-types', { removeImport: true }]
-          ].filter(Boolean)
-        }
-      })
-    ],
-    base: '/',
-    build: {
-      outDir: 'dist',
-      minify: 'terser',
-      sourcemap: false,
-      terserOptions: {
-        compress: {
-          drop_console: true,
-        },
-      }
-    },
-    resolve: {
-      alias: {
-        '@': resolve(__dirname, 'src'),
-        'crypto': 'crypto-browserify'
+export default defineConfig({
+  plugins: [
+    react({
+      // Simple production mode configuration
+      jsxRuntime: 'automatic'
+    })
+  ],
+  base: '/',
+  build: {
+    outDir: 'dist',
+    minify: 'terser',
+    sourcemap: false,
+    terserOptions: {
+      compress: {
+        drop_console: true,
       },
+    }
+  },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+      'crypto': 'crypto-browserify'
     },
-    define: {
-      'process.env.NODE_ENV': JSON.stringify(isProduction ? 'production' : 'development')
-    },
-  };
+  },
+  define: {
+    // This is the most important part for React production mode
+    'process.env.NODE_ENV': '"production"',
+    // Add this to ensure it's also available in browser
+    'import.meta.env.NODE_ENV': '"production"'
+  },
 });
