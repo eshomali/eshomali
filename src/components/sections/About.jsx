@@ -1,7 +1,7 @@
 // src/components/sections/About.jsx
 import { useState } from 'react';
 import Button from '../common/Button';
-import aboutImage from '../assets/images/about-large.jpg';
+import aboutImage from '../../assets/images/about-large.jpg';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('skills');
