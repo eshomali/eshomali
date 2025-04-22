@@ -5,7 +5,7 @@ import { resolve } from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/eshomali.github.io/', // For user/org sites (username.github.io)
+  base: '/', // For user/org sites (username.github.io)
   build: {
     outDir: 'dist',
     // Ensure production mode
