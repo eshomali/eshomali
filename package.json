@@ -5,7 +5,7 @@
   "homepage": "https://eshomali.github.io/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "cross-env NODE_ENV=production vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
@@ -37,6 +37,7 @@
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
     "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
     "crypto-browserify": "^3.12.1",
     "eslint": "^9.22.0",
     "eslint-plugin-react-hooks": "^5.2.0",
