@@ -1,3 +1,57 @@
+# .github\workflows\deploy.yml
+
+```yml
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+
+      - name: Install dependencies
+        uses: bahmutov/npm-install@v1
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload production-ready build files
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: production-files
+          path: ./dist
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+```
+
 # .gitignore
 
 ```
@@ -14,8 +68,6 @@ node_modules
 dist
 dist-ssr
 *.local
-
-.env
 
 # Editor directories and files
 .vscode/*
@@ -44,7 +96,7 @@ dist-ssr
 
 ```
 
-# .idea\eshomali_website.iml
+# .idea\eshomali.github.io.iml
 
 ```iml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -79,8 +131,19 @@ dist-ssr
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/eshomali_website.iml" filepath="$PROJECT_DIR$/.idea/eshomali_website.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/eshomali.github.io.iml" filepath="$PROJECT_DIR$/.idea/eshomali.github.io.iml" />
     </modules>
+  </component>
+</project>
+```
+
+# .idea\vcs.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
   </component>
 </project>
 ```
@@ -90,83 +153,7 @@ dist-ssr
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
-  <component name="ChangeListManager">
-    <list default="true" id="ced57572-a26f-4466-966b-4bb4523283a9" name="Changes" comment="" />
-    <option name="SHOW_DIALOG" value="false" />
-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
-    <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
-  <component name="ProjectId" id="2vxOTAj22Zy7XzWamzGI2IFCJfc" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.3.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
-  <component name="RunManager">
-    <configuration name="npm dev" type="js.build_tools.npm">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="dev" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
-      </set>
-    </attachedChunks>
-  </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
-  <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="ced57572-a26f-4466-966b-4bb4523283a9" name="Changes" comment="" />
-      <created>1745083263841</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1745083263841</updated>
-      <workItem from="1745083264869" duration="28835000" />
-    </task>
-    <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/server/utils/emailService.js</url>
-          <line>6</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
+  <component name="PropertiesComponent">{}</component>
 </project>
 ```
 
@@ -513,10 +500,13 @@ This is a file of the type: SVG Image
 
 ```json
 {
-  "name": "eshomali_website",
+  "name": "eshomali.github.io",
   "private": true,
   "version": "1.0.0",
+  "homepage": "https://eshomali.github.io/",
   "scripts": {
+	"predeploy" : "npm run build",
+	"deploy" : "gh-pages -d dist",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -551,6 +541,7 @@ This is a file of the type: SVG Image
     "eslint": "^9.22.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "gh-pages": "^6.3.0",
     "globals": "^16.0.0",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.0",
@@ -2687,6 +2678,14 @@ export default App;
 # src\assets\images\about-large.jpg
 
 This is a binary file of the type: Image
+
+# src\assets\images\logo.png
+
+This is a binary file of the type: Image
+
+# src\assets\images\logo.svg
+
+This is a file of the type: SVG Image
 
 # src\assets\react.svg
 
@@ -5073,6 +5072,8 @@ export default ContactPage;
 // src/components/sections/Hero.jsx
 import { useState, useEffect } from 'react';
 import Button from '../common/Button';
+// Import your SVG logo directly as a standard import
+import logoSvg from '../../assets/images/logo.svg'; // Update with your actual SVG logo path
 
 const Hero = () => {
   const [typedText, setTypedText] = useState('');
@@ -5084,10 +5085,10 @@ const Hero = () => {
   useEffect(() => {
     const typeWriter = () => {
       const currentRole = roles[currentRoleIndex];
-      
+
       if (!isDeleting) {
         setTypedText(currentRole.substring(0, typedText.length + 1));
-        
+
         if (typedText === currentRole) {
           // Pause at end of typing
           setTypingSpeed(2000);
@@ -5097,7 +5098,7 @@ const Hero = () => {
         }
       } else {
         setTypedText(currentRole.substring(0, typedText.length - 1));
-        
+
         if (typedText === '') {
           setIsDeleting(false);
           setCurrentRoleIndex((currentRoleIndex + 1) % roles.length);
@@ -5113,50 +5114,71 @@ const Hero = () => {
   }, [typedText, currentRoleIndex, isDeleting, typingSpeed, roles]);
 
   return (
-    <section id="hero" className="hero-section">
-      <div className="hero-container">
-        <div className="hero-content">
-          <h1 className="hero-title">
-            <span className="name">Essa Shomali</span>
-            <span className="role">
+      <section id="hero" className="hero-section">
+        <div className="hero-container">
+          {/* SVG Logo */}
+          <div className="hero-logo" style={{ marginBottom: '2rem' }}>
+            <div style={{
+              width: '280px',
+              height: '280px',
+              border: '2px solid #374151',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+              backgroundColor: '#111827',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              margin: '0 auto'
+            }}>
+              <img
+                  src={logoSvg}
+                  alt="Essa Shomali Logo"
+                  width="200"
+                  height="200"
+                  style={{ maxWidth: '100%', maxHeight: '100%' }}
+              />
+            </div>
+          </div>
+
+          <div className="hero-content">
+            <h1 className="hero-title">
+              <span className="name">Essa Shomali</span>
+              <span className="role">
               <span className="typed-role" aria-live="polite">{typedText}</span>
               <span className="cursor"></span>
             </span>
-          </h1>
-          
-          <p className="hero-description">
-            Helping businesses transform their digital presence with modern, accessible, 
-            and high-performance applications.
-          </p>
-          
-          <div className="hero-buttons">
-            <Button 
-              to="/portfolio" 
-              variant="primary" 
-              size="large"
-              aria-label="View my portfolio"
-            >
-              <i className="fas fa-eye" aria-hidden="true"></i> &nbsp; View My Work
-            </Button>
-            <Button 
-              to="/contact" 
-              variant="outline" 
-              size="large"
-              aria-label="Contact me"
-            >
-              <i className="fas fa-envelope" aria-hidden="true"></i> &nbsp; Get In Touch
-            </Button>
+            </h1>
+
+            <p className="hero-description">
+              Helping businesses transform their digital presence with modern, accessible,
+              and high-performance applications.
+            </p>
+
+            <div className="hero-buttons">
+              <Button
+                  to="/portfolio"
+                  variant="primary"
+                  size="large"
+                  aria-label="View my portfolio"
+              >
+                <i className="fas fa-eye" aria-hidden="true"></i> &nbsp; View My Work
+              </Button>
+              <Button
+                  to="/contact"
+                  variant="outline"
+                  size="large"
+                  aria-label="Contact me"
+              >
+                <i className="fas fa-envelope" aria-hidden="true"></i> &nbsp; Get In Touch
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-      
-      <div className="hero-shape-divider">
-        {/* SVG wave divider for visual separation */}
-        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="shape-fill"></path>
-        </svg>
-      </div>
-    </section>
+
+        <div className="hero-shape-divider">
+          <br/>
+        </div>
+
+      </section>
   );
 };
 
@@ -9656,15 +9678,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  server: {
-    port: 3000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:5000',
-        changeOrigin: true,
-      },
-    },
-  },
-});
+  base: "/eshomali.github.io/"
+})
 ```
 
