@@ -4,15 +4,11 @@ import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    react({
-      // Simple production mode configuration
-      jsxRuntime: 'automatic'
-    })
-  ],
-  base: '/',
+  plugins: [react()],
+  base: '/', // For user/org sites (username.github.io)
   build: {
     outDir: 'dist',
+    // Ensure production mode
     minify: 'terser',
     sourcemap: false,
     terserOptions: {
@@ -24,13 +20,10 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
-      'crypto': 'crypto-browserify'
+	  'crypto': 'crypto-browserify'
     },
   },
   define: {
-    // This is the most important part for React production mode
-    'process.env.NODE_ENV': '"production"',
-    // Add this to ensure it's also available in browser
-    'import.meta.env.NODE_ENV': '"production"'
+    'process.env.NODE_ENV': JSON.stringify('production')
   },
 });
