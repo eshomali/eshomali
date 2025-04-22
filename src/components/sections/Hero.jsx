@@ -6,7 +6,7 @@ import logoSvg from '../../assets/images/logo.svg'; // Update with your actual S
 
 const Hero = () => {
   const [typedText, setTypedText] = useState('');
-  const roles = ['Mobile App Developer', 'UI/UX Designer', 'API Expert', 'Full Stack Developer'];
+  const roles = ['Mobile App Developer', 'AI Expert', 'Website Designer'];
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(150);

@@ -9,7 +9,7 @@ const Services = () => {
   const services = [
     {
       id: 'web-development',
-      title: 'Web Development',
+      title: 'Website Development',
       icon: 'fas fa-code',
       shortDescription: 'Custom, responsive, and high-performance web applications built with modern technologies.',
       longDescription: 'I create custom web applications that are tailored to your specific business needs. Using React, Node.js, and other cutting-edge technologies, I build solutions that are fast, responsive, and scalable. My development process includes thorough testing and optimization to ensure your application performs well across all devices and browsers.',
@@ -115,7 +115,7 @@ const Services = () => {
             key={`modal-${service.id}`}
             className={`service-modal ${activeService === service.id ? 'active' : ''}`}
             id={`service-modal-${service.id}`}
-            aria-hidden={activeService !== service.id}
+            {...(activeService !== service.id ? { inert: '' } : {})}
             role="dialog"
             aria-labelledby={`service-modal-title-${service.id}`}
             aria-describedby={`service-modal-description-${service.id}`}

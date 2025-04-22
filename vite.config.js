@@ -23,4 +23,7 @@ export default defineConfig({
 	  'crypto': 'crypto-browserify'
     },
   },
+  define: {
+    'process.env.NODE_ENV': JSON.stringify('production')
+  },
 });
