@@ -9,19 +9,7 @@ const Layout = ({ children }) => {
   
   // Scroll to top on route change
   useEffect(() => {
-    // More aggressive scroll reset
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: 'instant' // Use 'instant' instead of smooth for more reliable behavior
-    });
-
-    // Sometimes the initial scroll doesn't work, so let's add a small delay as well
-    const timeoutId = setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 100);
-
-    return () => clearTimeout(timeoutId);
+    window.scrollTo(0, 0);
   }, [pathname]);
   
   // Add or remove scroll classes for page animations
