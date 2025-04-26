@@ -52,7 +52,7 @@ const ProjectPage = () => {
             <h2>Project Not Found</h2>
             <p>{error || "The project you're looking for doesn't exist or has been removed."}</p>
             <Button to="/portfolio" variant="primary">
-              Back to Portfolio
+              Back to Projects
             </Button>
           </div>
         </div>
@@ -77,7 +77,7 @@ const ProjectPage = () => {
         <section className="project-page-header">
           <div className="container">
             <div className="project-breadcrumb">
-              <Link to="/">Home</Link> / <Link to="/portfolio">Portfolio</Link> / <span>{project.title}</span>
+              <Link to="/">Home</Link> / <Link to="/portfolio">Projects</Link> / <span>{project.title}</span>
             </div>
             <h1>{project.title}</h1>
             <div className="project-category">{project.category}</div>

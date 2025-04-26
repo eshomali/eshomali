@@ -39,6 +39,7 @@ const mockProjects = [
     title: 'Restaurant Management',
     slug: 'e-commerce-platform',
     description: 'A full-featured restaurant management app with ordering, a rewards system, delivery, full menu support, and payment processing.',
+    image: '../../images/restaurant/1.png',
     images: [
       '../../images/restaurant/1.png',
       '../../images/restaurant/2.png',

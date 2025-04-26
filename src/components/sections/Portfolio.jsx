@@ -58,7 +58,7 @@ const Portfolio = () => {
       <section id="portfolio" className="portfolio section">
         <div className="container">
           <div className="section-title">
-            <h2>Portfolio</h2>
+            <h2>Projects</h2>
             <p>Check out some of my recent projects</p>
           </div>
           <div className="loading-spinner" aria-label="Loading projects">
@@ -74,7 +74,7 @@ const Portfolio = () => {
       <section id="portfolio" className="portfolio section">
         <div className="container">
           <div className="section-title">
-            <h2>Portfolio</h2>
+            <h2>Projects</h2>
             <p>Check out some of my recent projects</p>
           </div>
           <div className="error-message" role="alert">
@@ -89,7 +89,7 @@ const Portfolio = () => {
     <section id="portfolio" className="portfolio section">
       <div className="container">
         <div className="section-title">
-          <h2>Portfolio</h2>
+          <h2>Projects</h2>
           <p>Check out some of my recent projects</p>
         </div>
 

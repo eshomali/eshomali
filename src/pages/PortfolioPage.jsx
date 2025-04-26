@@ -83,7 +83,7 @@ const PortfolioPage = () => {
       
       <section className="page-header">
         <div className="container">
-          <h1>My Portfolio</h1>
+          <h1>My Projects</h1>
           <p>Explore my recent projects and case studies</p>
         </div>
       </section>
