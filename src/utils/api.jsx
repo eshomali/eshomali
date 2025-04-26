@@ -36,17 +36,28 @@ const fetchApi = async (endpoint, options = {}) => {
 const mockProjects = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
+    title: 'Restaurant Management',
     slug: 'e-commerce-platform',
-    description: 'A full-featured e-commerce platform with real-time inventory management and payment processing.',
-    image: '../../images/placeholder.jpg',
-    category: 'E-commerce',
+    description: 'A full-featured restaurant management app with ordering, a rewards system, delivery, full menu support, and payment processing.',
+    images: [
+      '../../images/restaurant/1.png',
+      '../../images/restaurant/2.png',
+      '../../images/restaurant/3.png',
+      '../../images/restaurant/4.png',
+      '../../images/restaurant/5.png',
+      '../../images/restaurant/6.png',
+      '../../images/restaurant/7.png',
+      '../../images/restaurant/8.png',
+      '../../images/restaurant/9.png',
+      '../../images/restaurant/10.png',
+    ],
+    category: 'Food Service',
     category_slug: 'e-commerce',
-    client: 'RetailGrowth Inc.',
-    year: 2023,
+    client: '{REDACTED}',
+    year: 2025,
     demo_url: 'https://retailgrowth-demo.com',
     featured: true,
-    technologies: ['React', 'Node.js', 'Express', 'MySQL', 'Tailwind CSS']
+    technologies: ['Apple iOS', 'Android', 'MacOS', 'Windows PC']
   }, /*
   {
     id: 2,
@@ -210,32 +221,42 @@ export const fetchProjectBySlug = async (slug) => {
   if (USE_MOCK_DATA) {
     // Simulate network delay
     await new Promise(resolve => setTimeout(resolve, 500));
-    
+
     const project = mockProjects.find(p => p.slug === slug);
-    
+
     if (!project) {
       return null;
     }
-    
+
     // Add related projects (for mock data)
-    const sameCategory = mockProjects.filter(p => 
-      p.category_slug === project.category_slug && p.id !== project.id
+    const sameCategory = mockProjects.filter(p =>
+        p.category_slug === project.category_slug && p.id !== project.id
     );
-    
+
     project.relatedProjects = sameCategory
-      .slice(0, 3)
-      .map(p => ({
-        id: p.id,
-        title: p.title,
-        slug: p.slug,
-        image: p.image
-      }));
-    
+        .slice(0, 3)
+        .map(p => ({
+          id: p.id,
+          title: p.title,
+          slug: p.slug,
+          // Handle both old and new image format for related projects
+          image: Array.isArray(p.images) ? p.images[0] : p.image
+        }));
+
+    // For backward compatibility, set image property to first image in array
+    if (Array.isArray(project.images) && !project.image) {
+      project.image = project.images[0];
+    }
+
     return project;
   }
-  
+
   try {
     const response = await fetchApi(`/portfolio/${slug}`);
+    // Ensure backward compatibility for API responses
+    if (response.data.images && !response.data.image) {
+      response.data.image = response.data.images[0];
+    }
     return response.data;
   } catch (error) {
     if (error.message.includes('404')) {
