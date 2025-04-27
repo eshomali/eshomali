@@ -116,7 +116,6 @@ const ContactPage = () => {
             <div className="contact-info">
               <h3>Let's Get In Touch</h3>
               <p className="contact-intro">
-                I'm always interested in new projects and collaborations.
                 Feel free to reach out with any questions or inquiries,
                 and I'll get back to you as soon as possible.
               </p>

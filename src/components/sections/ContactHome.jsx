@@ -102,7 +102,6 @@ const ContactHome = () => {
         <div className="contact-container">
           <div className="contact-info">
             <p className="contact-intro">
-              I'm always interested in new projects and collaborations.
               Feel free to reach out with any questions or inquiries,
               and I'll get back to you as soon as possible.
             </p>

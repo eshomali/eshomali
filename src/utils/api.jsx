@@ -58,7 +58,7 @@ const mockProjects = [
     year: 2025,
     demo_url: 'https://retailgrowth-demo.com',
     featured: true,
-    technologies: ['Apple iOS', 'Android', 'MacOS', 'Windows PC']
+    technologies: ['Apple iOS', 'Android', 'Windows PC']
   }, /*
   {
     id: 2,

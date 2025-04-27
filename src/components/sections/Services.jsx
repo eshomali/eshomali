@@ -104,7 +104,7 @@ const Services = () => {
                 variant="outline"
                 size="large"
             >
-              View All Projects
+              View My Work
             </Button>
           </div>
         </div>

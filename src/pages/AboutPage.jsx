@@ -57,27 +57,16 @@ const AboutPage = () => {
             
             <div className="about-intro-content">
               <h2>Essa Shomali</h2>
-              <h3>Professional App Developer & UI/UX Specialist</h3>
+              <h3>Professional App Developer</h3>
               
               <p className="lead">
-                I help businesses transform their digital presence with modern, accessible,
-                and high-performance web applications.
+                  I help businesses grow by building modern, accessible, and high-performance applications
               </p>
               
               <p>
-                With over 8 years of experience in app development, I specialize in creating
-                exceptional digital experiences that help businesses grow. My expertise spans
-                across the entire development lifecycle, from concept and design to 
-                deployment and maintenance.
+                  With over 8 years of experience, I create exceptional digital experiences that are visually stunning, highly functional, and aligned with your business goals.
               </p>
-              
-              <p>
-                I'm passionate about building applications that are not only visually stunning
-                but also highly functional, accessible, and optimized for performance.
-                My approach combines technical excellence with a deep understanding of 
-                business goals to deliver solutions that drive real results.
-              </p>
-              
+
               <div className="personal-info">
                 <div className="info-item">
                   <span className="label">Name: </span>

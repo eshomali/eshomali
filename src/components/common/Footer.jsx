@@ -39,16 +39,16 @@ const Footer = () => {
               <h4>Services</h4>
               <ul>
                 <li>
-                  <Link to="/portfolio?category=web-development">Web Development</Link>
+                  Web Development
                 </li>
                 <li>
-                  <Link to="/portfolio?category=mobile-app">Mobile Apps</Link>
+                  Mobile Apps
                 </li>
                 <li>
-                  <Link to="/portfolio?category=ui-ux-design">UI/UX Design</Link>
+                  UI/UX Design
                 </li>
                 <li>
-                  <Link to="/about#skills">Technical Consulting</Link>
+                  Technical Consulting
                 </li>
               </ul>
             </div>

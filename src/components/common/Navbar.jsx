@@ -65,7 +65,7 @@ const Navbar = ({ isMobile = false, closeMobileMenu = () => {} }) => {
             className={({ isActive }) => isActive ? 'active' : ''}
             onClick={handleClick}
           >
-            Portfolio
+            Projects
           </NavLink>
         </li>
         <li>
