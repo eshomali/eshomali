@@ -31,7 +31,6 @@ const PortfolioHome = () => {
         <div className="container">
           <div className="section-title">
             <h2>Featured Projects</h2>
-            <p>Check out some of my recent work</p>
           </div>
           <div className="loading-spinner-container">
             <div className="spinner"></div>
@@ -48,7 +47,6 @@ const PortfolioHome = () => {
         <div className="container">
           <div className="section-title">
             <h2>Featured Projects</h2>
-            <p>Check out some of my recent work</p>
           </div>
           <div className="error-message" role="alert">
             {error}

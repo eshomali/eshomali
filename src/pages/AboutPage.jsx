@@ -18,7 +18,6 @@ const AboutPage = () => {
       <section className="page-header">
         <div className="container">
           <h1>About Me</h1>
-          <p>Get to know my background and expertise</p>
         </div>
       </section>
       
@@ -60,11 +59,7 @@ const AboutPage = () => {
               <h3>Professional App Developer</h3>
               
               <p className="lead">
-                  I help businesses grow by building modern, accessible, and high-performance applications
-              </p>
-              
-              <p>
-                  With over 8 years of experience, I create exceptional digital experiences that are visually stunning, highly functional, and aligned with your business goals.
+                  With over 8 years of experience, I create exceptional digital experiences that are aligned with your business goals.
               </p>
 
               <div className="personal-info">

@@ -78,8 +78,7 @@ const Hero = () => {
             </h1>
 
             <p className="hero-description">
-              Helping businesses transform their digital presence with modern, accessible,
-              and high-performance applications.
+              Helping businesses transform their digital presence with modern, high-performance applications.
             </p>
 
             <div className="hero-buttons">

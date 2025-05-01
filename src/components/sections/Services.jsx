@@ -41,19 +41,19 @@ const Services = () => {
     },
     {
       id: 'consulting',
-      title: 'Technical Consulting',
+      title: 'SEO & Marketing',
       icon: 'fas fa-lightbulb',
-      shortDescription: 'Expert guidance on technology solutions, architecture, and digital transformation strategies.',
-      longDescription: 'I provide technical consulting services to help businesses make informed decisions about their digital strategies. Whether you need guidance on technology selection, architecture design, or performance optimization, I offer expert advice based on years of industry experience. My goal is to help you leverage technology effectively to meet your business objectives.',
+      shortDescription: 'Expert strategies for SEO, digital marketing, and online brand growth.',
+      longDescription: 'I provide SEO and marketing services to help businesses enhance their online presence and drive growth. From keyword research and content optimization to comprehensive digital marketing campaigns, I offer tailored strategies based on industry expertise. My goal is to boost your visibility, attract the right audience, and achieve measurable results.',
       features: [
-        'Technology stack evaluation',
-        'Architecture planning',
-        'Performance audit and optimization',
-        'Code review and refactoring',
-        'Digital transformation strategy',
-        'Team training and mentoring'
+        'Keyword research and analysis',
+        'On-page and off-page SEO',
+        'Content marketing strategy',
+        'Social media advertising',
+        'Performance tracking and analytics',
+        'Brand awareness campaigns'
       ],
-      technologies: ['System Architecture', 'DevOps', 'CI/CD', 'Cloud Solutions', 'Security Best Practices', 'Scalability']
+      technologies: ['SEO Tools', 'Google Analytics', 'Content Management Systems', 'Social Media Platforms', 'Marketing Automation']
     }
   ];
   
@@ -73,7 +73,7 @@ const Services = () => {
     <section id="services" className="services-section">
       <div className="container">
         <div className="section-title">
-          <h2>Services</h2>
+          <h2>Solutions</h2>
         </div>
         
         <div className="services-container">
