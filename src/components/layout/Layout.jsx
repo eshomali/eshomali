@@ -10,6 +10,8 @@ const Layout = ({ children }) => {
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [pathname]);
   
   // Add or remove scroll classes for page animations
