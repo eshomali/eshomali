@@ -55,7 +55,7 @@ const PortfolioPage = () => {
       <div className="loading-container">
         <div className="loading-spinner" aria-label="Loading projects">
           <div className="spinner"></div>
-          <p>Loading projects...</p>
+          <p>Loading...</p>
         </div>
       </div>
     );

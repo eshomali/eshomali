@@ -39,7 +39,7 @@ const ProjectPage = () => {
         <div className="loading-container">
           <div className="loading-spinner" aria-label="Loading project details">
             <div className="spinner"></div>
-            <p>Loading project details...</p>
+            <p>Loading details...</p>
           </div>
         </div>
     );

@@ -34,7 +34,7 @@ const PortfolioHome = () => {
           </div>
           <div className="loading-spinner-container">
             <div className="spinner"></div>
-            <p>Loading projects...</p>
+            <p>Loading...</p>
           </div>
         </div>
       </section>
