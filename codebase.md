@@ -19,12 +19,16 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
       - name: Build project
         run: npm run build
+        env:
+          NODE_ENV: production
 
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v4
@@ -50,6 +54,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+
 ```
 
 # .gitignore
@@ -68,6 +73,8 @@ node_modules
 dist
 dist-ssr
 *.local
+
+.env
 
 # Editor directories and files
 .vscode/*
@@ -153,7 +160,76 @@ dist-ssr
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{}</component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="29fe4a03-0215-450b-aef7-3862b4149bb5" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2w63a376QcU5PucxsoNMr3RNm5I" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/dev/restaurant-app",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.3.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-WS-243.26053.12" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="29fe4a03-0215-450b-aef7-3862b4149bb5" name="Changes" comment="" />
+      <created>1745348255810</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1745348255810</updated>
+      <workItem from="1745348257410" duration="5999000" />
+      <workItem from="1745681239971" duration="9724000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/sections/Services.jsx</url>
+          <line>174</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
 </project>
 ```
 
@@ -458,6 +534,15 @@ This is a file of the type: SVG Image
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B7ZFEBXKVR"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-B7ZFEBXKVR');
+    </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -505,12 +590,12 @@ This is a file of the type: SVG Image
   "version": "1.0.0",
   "homepage": "https://eshomali.github.io/",
   "scripts": {
-	"predeploy" : "npm run build",
-	"deploy" : "gh-pages -d dist",
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build --mode production",
     "lint": "eslint .",
     "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "server": "node server/server.js",
     "server:dev": "nodemon server/server.js",
     "start": "node server/server.js",
@@ -538,6 +623,8 @@ This is a file of the type: SVG Image
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
     "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "crypto-browserify": "^3.12.1",
     "eslint": "^9.22.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
@@ -545,11 +632,56 @@ This is a file of the type: SVG Image
     "globals": "^16.0.0",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.0",
+    "terser": "^5.39.0",
     "vite": "^6.3.1"
   }
 }
 
 ```
+
+# public\images\placeholder.jpg
+
+This is a binary file of the type: Image
+
+# public\images\restaurant\1.png
+
+This is a binary file of the type: Image
+
+# public\images\restaurant\2.png
+
+This is a binary file of the type: Image
+
+# public\images\restaurant\3.png
+
+This is a binary file of the type: Image
+
+# public\images\restaurant\4.png
+
+This is a binary file of the type: Image
+
+# public\images\restaurant\5.png
+
+This is a binary file of the type: Image
+
+# public\images\restaurant\6.png
+
+This is a binary file of the type: Image
+
+# public\images\restaurant\7.png
+
+This is a binary file of the type: Image
+
+# public\images\restaurant\8.png
+
+This is a binary file of the type: Image
+
+# public\images\restaurant\9.png
+
+This is a binary file of the type: Image
+
+# public\images\restaurant\10.png
+
+This is a binary file of the type: Image
 
 # public\vite.svg
 
@@ -2794,7 +2926,7 @@ const Footer = () => {
                   <Link to="/about">About</Link>
                 </li>
                 <li>
-                  <Link to="/portfolio">Portfolio</Link>
+                  <Link to="/portfolio">Projects</Link>
                 </li>
                 <li>
                   <Link to="/contact">Contact</Link>
@@ -2806,16 +2938,16 @@ const Footer = () => {
               <h4>Services</h4>
               <ul>
                 <li>
-                  <Link to="/portfolio?category=web-development">Web Development</Link>
+                  Web Development
                 </li>
                 <li>
-                  <Link to="/portfolio?category=mobile-app">Mobile Apps</Link>
+                  Mobile Apps
                 </li>
                 <li>
-                  <Link to="/portfolio?category=ui-ux-design">UI/UX Design</Link>
+                  UI/UX Design
                 </li>
                 <li>
-                  <Link to="/about#skills">Technical Consulting</Link>
+                  Technical Consulting
                 </li>
               </ul>
             </div>
@@ -3013,7 +3145,7 @@ const Navbar = ({ isMobile = false, closeMobileMenu = () => {} }) => {
             className={({ isActive }) => isActive ? 'active' : ''}
             onClick={handleClick}
           >
-            Portfolio
+            Projects
           </NavLink>
         </li>
         <li>
@@ -3198,12 +3330,206 @@ const Layout = ({ children }) => {
 export default Layout;
 ```
 
+# src\components\ProjectCarousel.css
+
+```css
+/* src/components/ProjectCarousel.css */
+
+.project-carousel {
+  position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+
+.carousel-main-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-main-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  z-index: 2;
+  margin: 0 0.5rem;
+}
+
+.carousel-arrow:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.carousel-arrow-left {
+  left: 1rem;
+}
+
+.carousel-arrow-right {
+  right: 1rem;
+}
+
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  background-color: #111827;
+  position: relative;
+  z-index: 3;
+}
+
+.carousel-indicator {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background-color: #374151;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.carousel-indicator:hover {
+  background-color: #4B5563;
+}
+
+.carousel-indicator.active {
+  background-color: #6366f1;
+  transform: scale(1.2);
+}
+
+/* Add responsive adjustments */
+@media (max-width: 768px) {
+  .carousel-arrow {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-arrow {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .carousel-indicator {
+    width: 0.6rem;
+    height: 0.6rem;
+  }
+}
+```
+
+# src\components\ProjectCarousel.jsx
+
+```jsx
+// src/components/ProjectCarousel.jsx
+import { useState } from 'react';
+import './ProjectCarousel.css';
+
+const ProjectCarousel = ({ images }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  // Handle when images is undefined, null, or not an array
+  const imageArray = Array.isArray(images) ? images :
+      // If it's a single image string, convert to array
+      (typeof images === 'string' ? [images] :
+          // Otherwise use a placeholder
+          ["https://via.placeholder.com/800x600?text=Project+Image"]);
+
+  const goToPrevious = () => {
+    const isFirstImage = currentIndex === 0;
+    const newIndex = isFirstImage ? imageArray.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const goToNext = () => {
+    const isLastImage = currentIndex === imageArray.length - 1;
+    const newIndex = isLastImage ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
+
+  // Only show navigation if there's more than one image
+  const showNavigation = imageArray.length > 1;
+
+  return (
+      <div className="project-carousel">
+        <div className="carousel-main-image">
+          <img
+              src={imageArray[currentIndex]}
+              alt={`Project view ${currentIndex + 1} of ${imageArray.length}`}
+              onLoad={() => setImageLoaded(true)}
+          />
+
+          {showNavigation && (
+              <>
+                <button
+                    className="carousel-arrow carousel-arrow-left"
+                    onClick={goToPrevious}
+                    aria-label="Previous image"
+                >
+                  <i className="fas fa-chevron-left"></i>
+                </button>
+
+                <button
+                    className="carousel-arrow carousel-arrow-right"
+                    onClick={goToNext}
+                    aria-label="Next image"
+                >
+                  <i className="fas fa-chevron-right"></i>
+                </button>
+              </>
+          )}
+        </div>
+
+        {showNavigation && (
+            <div className="carousel-indicators">
+              {imageArray.map((_, index) => (
+                  <button
+                      key={index}
+                      className={`carousel-indicator ${index === currentIndex ? 'active' : ''}`}
+                      onClick={() => setCurrentIndex(index)}
+                      aria-label={`Go to image ${index + 1}`}
+                      aria-current={index === currentIndex}
+                  />
+              ))}
+            </div>
+        )}
+      </div>
+  );
+};
+
+export default ProjectCarousel;
+```
+
 # src\components\sections\About.jsx
 
 ```jsx
 // src/components/sections/About.jsx
 import { useState } from 'react';
 import Button from '../common/Button';
+import aboutImage from '../../assets/images/about-large.jpg';
 
 const About = () => {
   const [activeTab, setActiveTab] = useState('skills');
@@ -3277,7 +3603,7 @@ const About = () => {
           <div className="about-image">
             <div className="image-wrapper">
               <img 
-                src="src/assets/images/about-large.jpg"
+                src={aboutImage}
                 alt="Essa Shomali - Professional App Developer"
                 loading="lazy"
                 style={{
@@ -3302,25 +3628,14 @@ const About = () => {
           </div>
 
           <div className="about-content">
-            <h3>Professional App Developer & UI/UX Specialist</h3>
+            <h3>Professional App Developer</h3>
             
             <p className="lead">
-              I help businesses transform their digital presence with modern, accessible,
-              and high-performance web applications.
+              I help businesses grow by building modern, accessible, and high-performance applications.
             </p>
             
             <p>
-              With over 8 years of experience in app development, I specialize in creating
-              exceptional digital experiences that help businesses grow. My expertise spans
-              across the entire development lifecycle, from concept and design to 
-              deployment and maintenance.
-            </p>
-            
-            <p>
-              I'm passionate about building applications that are not only visually stunning
-              but also highly functional, accessible, and optimized for performance.
-              My approach combines technical excellence with a deep understanding of 
-              business goals to deliver solutions that drive real results.
+              With over 8 years of experience, I create exceptional digital experiences that are visually stunning, highly functional, and aligned with your business goals.
             </p>
             
             <div className="about-tabs">
@@ -4175,7 +4490,6 @@ const ContactHome = () => {
         <div className="contact-container">
           <div className="contact-info">
             <p className="contact-intro">
-              I'm always interested in new projects and collaborations.
               Feel free to reach out with any questions or inquiries,
               and I'll get back to you as soon as possible.
             </p>
@@ -4993,7 +5307,6 @@ const ContactPage = () => {
             <div className="contact-info">
               <h3>Let's Get In Touch</h3>
               <p className="contact-intro">
-                I'm always interested in new projects and collaborations.
                 Feel free to reach out with any questions or inquiries,
                 and I'll get back to you as soon as possible.
               </p>
@@ -5077,7 +5390,7 @@ import logoSvg from '../../assets/images/logo.svg'; // Update with your actual S
 
 const Hero = () => {
   const [typedText, setTypedText] = useState('');
-  const roles = ['Mobile App Developer', 'UI/UX Designer', 'API Expert', 'Full Stack Developer'];
+  const roles = ['Mobile App Developer', 'AI Expert', 'Website Designer'];
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(150);
@@ -5248,7 +5561,7 @@ const Portfolio = () => {
       <section id="portfolio" className="portfolio section">
         <div className="container">
           <div className="section-title">
-            <h2>Portfolio</h2>
+            <h2>Projects</h2>
             <p>Check out some of my recent projects</p>
           </div>
           <div className="loading-spinner" aria-label="Loading projects">
@@ -5264,7 +5577,7 @@ const Portfolio = () => {
       <section id="portfolio" className="portfolio section">
         <div className="container">
           <div className="section-title">
-            <h2>Portfolio</h2>
+            <h2>Projects</h2>
             <p>Check out some of my recent projects</p>
           </div>
           <div className="error-message" role="alert">
@@ -5279,7 +5592,7 @@ const Portfolio = () => {
     <section id="portfolio" className="portfolio section">
       <div className="container">
         <div className="section-title">
-          <h2>Portfolio</h2>
+          <h2>Projects</h2>
           <p>Check out some of my recent projects</p>
         </div>
 
@@ -5477,7 +5790,7 @@ const Services = () => {
   const services = [
     {
       id: 'web-development',
-      title: 'Web Development',
+      title: 'Website Development',
       icon: 'fas fa-code',
       shortDescription: 'Custom, responsive, and high-performance web applications built with modern technologies.',
       longDescription: 'I create custom web applications that are tailored to your specific business needs. Using React, Node.js, and other cutting-edge technologies, I build solutions that are fast, responsive, and scalable. My development process includes thorough testing and optimization to ensure your application performs well across all devices and browsers.',
@@ -5572,7 +5885,7 @@ const Services = () => {
                 variant="outline"
                 size="large"
             >
-              View All Projects
+              View My Work
             </Button>
           </div>
         </div>
@@ -5583,7 +5896,7 @@ const Services = () => {
             key={`modal-${service.id}`}
             className={`service-modal ${activeService === service.id ? 'active' : ''}`}
             id={`service-modal-${service.id}`}
-            aria-hidden={activeService !== service.id}
+            {...(activeService !== service.id ? { inert: '' } : {})}
             role="dialog"
             aria-labelledby={`service-modal-title-${service.id}`}
             aria-describedby={`service-modal-description-${service.id}`}
@@ -5632,7 +5945,8 @@ const Services = () => {
                 </div>
                 
                 <div className="service-cta">
-                  <Button 
+                  {/*
+                  <Button
                     to={`/services/${service.id}`}
                     variant="primary"
                     aria-label={`Learn more about my ${service.title} services`}
@@ -5645,7 +5959,7 @@ const Services = () => {
                     aria-label="Contact me about this service"
                   >
                     Request a Quote
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </div>
@@ -6473,6 +6787,7 @@ reactRoot.render(
 
 import { Helmet } from 'react-helmet-async';
 import Button from '../components/common/Button';
+import aboutImage from '../assets/images/about-large.jpg';
 
 const AboutPage = () => {
   return (
@@ -6512,7 +6827,7 @@ const AboutPage = () => {
                 }}
             >
               <img
-                  src="src/assets/images/about-large.jpg"
+                  src={aboutImage}
                   alt="Essa Shomali - Professional App Developer"
                   loading="lazy"
                   style={{
@@ -6527,27 +6842,16 @@ const AboutPage = () => {
             
             <div className="about-intro-content">
               <h2>Essa Shomali</h2>
-              <h3>Professional App Developer & UI/UX Specialist</h3>
+              <h3>Professional App Developer</h3>
               
               <p className="lead">
-                I help businesses transform their digital presence with modern, accessible,
-                and high-performance web applications.
+                  I help businesses grow by building modern, accessible, and high-performance applications
               </p>
               
               <p>
-                With over 8 years of experience in app development, I specialize in creating
-                exceptional digital experiences that help businesses grow. My expertise spans
-                across the entire development lifecycle, from concept and design to 
-                deployment and maintenance.
+                  With over 8 years of experience, I create exceptional digital experiences that are visually stunning, highly functional, and aligned with your business goals.
               </p>
-              
-              <p>
-                I'm passionate about building applications that are not only visually stunning
-                but also highly functional, accessible, and optimized for performance.
-                My approach combines technical excellence with a deep understanding of 
-                business goals to deliver solutions that drive real results.
-              </p>
-              
+
               <div className="personal-info">
                 <div className="info-item">
                   <span className="label">Name: </span>
@@ -6629,7 +6933,7 @@ const ContactPage = () => {
     subject: '',
     message: ''
   };
-  
+
   const [formData, setFormData] = useState(initialFormState);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -6637,25 +6941,25 @@ const ContactPage = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    
+
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
       newErrors.email = 'Invalid email address';
     }
-    
+
     if (!formData.subject.trim()) {
       newErrors.subject = 'Subject is required';
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
     }
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -6666,7 +6970,7 @@ const ContactPage = () => {
       ...prevData,
       [name]: value
     }));
-    
+
     // Clear error when typing
     if (errors[name]) {
       setErrors(prevErrors => ({
@@ -6678,23 +6982,23 @@ const ContactPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
-    
+
     try {
       setIsSubmitting(true);
       const response = await submitContactForm(formData);
-      
+
       setSubmitStatus({
         type: 'success',
         message: 'Your message has been sent successfully! I will get back to you soon.'
       });
-      
+
       // Reset form after successful submission
       setFormData(initialFormState);
-      
+
       // Clear success message after 5 seconds
       setTimeout(() => {
         setSubmitStatus(null);
@@ -6710,91 +7014,91 @@ const ContactPage = () => {
   };
 
   return (
-    <>
-      <Helmet>
-        <title>Contact Me | Essa Shomali - App Developer</title>
-        <meta 
-          name="description" 
-          content="Get in touch with Essa Shomali for app development projects, consultations, or inquiries. I'm here to help bring your digital ideas to life."
-        />
-      </Helmet>
-      
-      <section className="page-header">
-        <div className="container">
-          <h1>Contact Me</h1>
-          <p>Let's discuss your project</p>
-        </div>
-      </section>
-      
-      <section className="contact-page-section section">
-        <div className="container">
-          <div className="contact-page-container">
-            <div className="contact-info">
-              <h2>Let's Get In Touch</h2>
-              <p className="contact-intro">
-                I'm always interested in new projects and collaborations.
-                Feel free to reach out with any questions or inquiries,
-                and I'll get back to you as soon as possible.
-              </p>
-              
-              <div className="contact-info-item">
-                <i className="fas fa-map-marker-alt" aria-hidden="true"></i>
-                <div>
-                  <h3>Location: </h3>
-                  <p>Detroit, MI</p>
-                </div>
-              </div>
+      <>
+        <Helmet>
+          <title>Contact Me | Essa Shomali - App Developer</title>
+          <meta
+              name="description"
+              content="Get in touch with Essa Shomali for app development projects, consultations, or inquiries. I'm here to help bring your digital ideas to life."
+          />
+        </Helmet>
 
-              <div className="contact-info-item">
-                <i className="fas fa-envelope" aria-hidden="true"></i>
-                <div>
-                  <h3>Email:</h3>
-                  <p>
-                    <a href="mailto:eshomali@gmail.com">eshomali@gmail.com</a>
-                  </p>
-                </div>
-              </div>
+        <section className="page-header">
+          <div className="container">
+            <h1>Contact Me</h1>
+            <p>Let's discuss your project</p>
+          </div>
+        </section>
 
-              <div className="contact-info-item">
-                <i className="fas fa-phone" aria-hidden="true"></i>
-                <div>
-                  <h3>Call/Text:</h3>
-                  <p>
-                    <a href="tel:+17348823914">+1 (734) 882-3914</a>
-                  </p>
+        <section className="contact-page-section section">
+          <div className="container">
+            <div className="contact-page-container">
+              <div className="contact-info">
+                <h2>Let's Get In Touch</h2>
+                <p className="contact-intro">
+                  Feel free to reach out with any questions or inquiries,
+                  and I'll get back to you as soon as possible.
+                </p>
+
+                <div className="contact-info-item">
+                  <i className="fas fa-map-marker-alt" aria-hidden="true"></i>
+                  <div>
+                    <h3>Location: </h3>
+                    <p>Detroit, MI</p>
+                  </div>
                 </div>
-              </div>
-              <br/>
-              <div className="social-links">
-                <h3>Connect With Me</h3>
-                <div className="social-icons">
-                  <a href="https://linkedin.com/in/eshomali" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-                    <i className="fab fa-linkedin-in"></i>
-                  </a>
-                  <a href="https://www.instagram.com/eshomz" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
-                    <i className="fab fa-instagram"></i>
-                  </a>
+
+                <div className="contact-info-item">
+                  <i className="fas fa-envelope" aria-hidden="true"></i>
+                  <div>
+                    <h3>Email:</h3>
+                    <p>
+                      <a href="mailto:eshomali@gmail.com">eshomali@gmail.com</a>
+                    </p>
+                  </div>
+                </div>
+
+                <div className="contact-info-item">
+                  <i className="fas fa-phone" aria-hidden="true"></i>
+                  <div>
+                    <h3>Call/Text:</h3>
+                    <p>
+                      <a href="tel:+17348823914">+1 (734) 882-3914</a>
+                    </p>
+                  </div>
+                </div>
+                <br/>
+                <div className="social-links">
+                  <h3>Connect With Me</h3>
+                  <div className="social-icons">
+                    <a href="https://linkedin.com/in/eshomali" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                      <i className="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.instagram.com/eshomz" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile">
+                      <i className="fab fa-instagram"></i>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      
-      <section className="map-section">
-        <div className="map-container">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1511826.1404648044!2d-83.28795935000001!3d42.3527111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8824ca0110cb1d75%3A0x5776864e35b9c4d2!2sDetroit%2C%20MI!5e0!3m2!1sen!2sus!4v1677654321!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-            width="100%"
-            height="450"
-            style={{ border: 0 }}
-            allowFullScreen=""
-            loading="lazy"
-            title="Office Location Map"
-          ></iframe>
-        </div>
-      </section>
-    </>
+        </section>
+
+        <section className="map-section">
+          <div className="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1511826.1404648044!2d-83.28795935000001!3d42.3527111!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8824ca0110cb1d75%3A0x5776864e35b9c4d2!2sDetroit%2C%20MI!5e0!3m2!1sen!2sus!4v1677654321!5m2!1sen!2sus"
+                width="100%"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Location Map"
+            ></iframe>
+          </div>
+        </section>
+      </>
   );
 };
 
@@ -8778,7 +9082,7 @@ const PortfolioPage = () => {
       
       <section className="page-header">
         <div className="container">
-          <h1>My Portfolio</h1>
+          <h1>My Projects</h1>
           <p>Explore my recent projects and case studies</p>
         </div>
       </section>
@@ -8930,6 +9234,9 @@ export default PortfolioPage;
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  width: 100%;
+  /* Remove any max-height constraints that might limit the carousel */
+  max-height: none;
 }
 
 .project-details-image img {
@@ -9109,6 +9416,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Button from '../components/common/Button';
+import ProjectCarousel from '../components/ProjectCarousel'; // Import the carousel component
 import { fetchProjectBySlug } from '../utils/api.jsx';
 import './ProjectPage.css';
 
@@ -9132,102 +9440,108 @@ const ProjectPage = () => {
         setLoading(false);
       }
     };
-    
+
     getProjectData();
-    
+
     // Scroll to top on page load
     window.scrollTo(0, 0);
   }, [slug]);
 
   if (loading) {
     return (
-      <div className="loading-container">
-        <div className="loading-spinner" aria-label="Loading project details">
-          <div className="spinner"></div>
-          <p>Loading project details...</p>
+        <div className="loading-container">
+          <div className="loading-spinner" aria-label="Loading project details">
+            <div className="spinner"></div>
+            <p>Loading project details...</p>
+          </div>
         </div>
-      </div>
     );
   }
 
   if (error || !project) {
     return (
-      <div className="error-container">
-        <div className="error-content">
-          <h2>Project Not Found</h2>
-          <p>{error || "The project you're looking for doesn't exist or has been removed."}</p>
-          <Button to="/portfolio" variant="primary">
-            Back to Portfolio
-          </Button>
+        <div className="error-container">
+          <div className="error-content">
+            <h2>Project Not Found</h2>
+            <p>{error || "The project you're looking for doesn't exist or has been removed."}</p>
+            <Button to="/portfolio" variant="primary">
+              Back to Projects
+            </Button>
+          </div>
         </div>
-      </div>
     );
   }
 
+  // Determine which images to use for the carousel
+  // - Use project.images array if available
+  // - Fall back to a single image if no images array
+  // - Use a placeholder if neither is available
+  const carouselImages = project.images ||
+      (project.image ? [project.image] :
+          ["https://via.placeholder.com/800x600?text=Project+Image"]);
+
   return (
-    <>
-      <Helmet>
-        <title>{project.title} | Essa Shomali</title>
-        <meta name="description" content={project.description} />
-      </Helmet>
-      
-      <section className="project-page-header">
-        <div className="container">
-          <div className="project-breadcrumb">
-            <Link to="/">Home</Link> / <Link to="/portfolio">Portfolio</Link> / <span>{project.title}</span>
-          </div>
-          <h1>{project.title}</h1>
-          <div className="project-category">{project.category}</div>
-        </div>
-      </section>
-      
-      <section className="project-details">
-        <div className="container">
-          <div className="project-details-grid">
-            <div className="project-details-image">
-              <img 
-                src={project.image || "https://via.placeholder.com/800x600?text=Project+Image"} 
-                alt={`${project.title} - Project Screenshot`}
-              />
+      <>
+        <Helmet>
+          <title>{project.title} | Essa Shomali</title>
+          <meta name="description" content={project.description} />
+        </Helmet>
+
+        <section className="project-page-header">
+          <div className="container">
+            <div className="project-breadcrumb">
+              <Link to="/">Home</Link> / <Link to="/portfolio">Projects</Link> / <span>{project.title}</span>
             </div>
-            
-            <div className="project-details-content">
-              <div className="project-meta">
-                <div className="meta-item">
-                  <h3>Client</h3>
-                  <p>{project.client}</p>
-                </div>
-                <div className="meta-item">
-                  <h3>Year</h3>
-                  <p>{project.year}</p>
-                </div>
-                <div className="meta-item">
-                  <h3>Category</h3>
-                  <p>{project.category}</p>
-                </div>
+            <h1>{project.title}</h1>
+            <div className="project-category">{project.category}</div>
+          </div>
+        </section>
+
+        <section className="project-details">
+          <div className="container">
+            <div className="project-details-grid">
+              <div className="project-details-image">
+                {/* Replace the static image with our carousel component */}
+                <ProjectCarousel images={carouselImages} />
               </div>
-              
-              <div className="project-description">
-                <h2>Project Overview</h2>
-                <p>{project.description}</p>
-                
-                {project.long_description && (
-                  <p>{project.long_description}</p>
-                )}
-                
-                <h3>Technologies Used</h3>
-                <div className="technology-tags">
-                  {project.technologies && project.technologies.map((tech, index) => (
-                    <span key={index} className="technology-tag">
+
+              <div className="project-details-content">
+                <div className="project-meta">
+                  <div className="meta-item">
+                    <h3>Client</h3>
+                    <p>{project.client}</p>
+                  </div>
+                  <div className="meta-item">
+                    <h3>Year</h3>
+                    <p>{project.year}</p>
+                  </div>
+                  <div className="meta-item">
+                    <h3>Category</h3>
+                    <p>{project.category}</p>
+                  </div>
+                </div>
+
+                <div className="project-description">
+                  <h2>Project Overview</h2>
+                  <p>{project.description}</p>
+
+                  {project.long_description && (
+                      <p>{project.long_description}</p>
+                  )}
+
+                  <h3>Supported Platforms</h3>
+                  <div className="technology-tags">
+                    {project.technologies && project.technologies.map((tech, index) => (
+                        <span key={index} className="technology-tag">
                       {tech}
                     </span>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
-              
-              <div className="project-actions">
-                {project.demo_url && (
-                  <Button 
+
+                <div className="project-actions">
+                  {/*{project.demo_url && (
+                    <Button
                     href={project.demo_url} 
                     variant="primary" 
                     size="large"
@@ -9236,46 +9550,46 @@ const ProjectPage = () => {
                   >
                     <i className="fas fa-external-link-alt" aria-hidden="true"></i> View Live Demo
                   </Button>
-                )}
-                <Button 
-                  to="/contact" 
-                  variant="outline" 
-                  size="large"
-                >
-                  <i className="fas fa-envelope" aria-hidden="true"></i> Project Inquiry
-                </Button>
+                )}*/}
+                  <Button
+                      to="/contact"
+                      variant="outline"
+                      size="large"
+                  >
+                    <i className="fas fa-envelope" aria-hidden="true"> </i> Project Inquiry
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      
-      {project.relatedProjects && project.relatedProjects.length > 0 && (
-        <section className="related-projects">
-          <div className="container">
-            <h2>Related Projects</h2>
-            <div className="related-projects-grid">
-              {project.relatedProjects.map(relatedProject => (
-                <div 
-                  key={relatedProject.id} 
-                  className="related-project"
-                  onClick={() => navigate(`/portfolio/${relatedProject.slug}`)}
-                >
-                  <div className="related-project-image">
-                    <img 
-                      src={relatedProject.image || "https://via.placeholder.com/400x300?text=Related+Project"} 
-                      alt={relatedProject.title} 
-                      loading="lazy"
-                    />
-                  </div>
-                  <h3>{relatedProject.title}</h3>
-                </div>
-              ))}
-            </div>
-          </div>
         </section>
-      )}
-    </>
+
+        {project.relatedProjects && project.relatedProjects.length > 0 && (
+            <section className="related-projects">
+              <div className="container">
+                <h2>Related Projects</h2>
+                <div className="related-projects-grid">
+                  {project.relatedProjects.map(relatedProject => (
+                      <div
+                          key={relatedProject.id}
+                          className="related-project"
+                          onClick={() => navigate(`/portfolio/${relatedProject.slug}`)}
+                      >
+                        <div className="related-project-image">
+                          <img
+                              src={relatedProject.image || "https://via.placeholder.com/400x300?text=Related+Project"}
+                              alt={relatedProject.title}
+                              loading="lazy"
+                          />
+                        </div>
+                        <h3>{relatedProject.title}</h3>
+                      </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+        )}
+      </>
   );
 };
 
@@ -9323,18 +9637,30 @@ const fetchApi = async (endpoint, options = {}) => {
 const mockProjects = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
+    title: 'Restaurant Management',
     slug: 'e-commerce-platform',
-    description: 'A full-featured e-commerce platform with real-time inventory management and payment processing.',
-    image: 'https://via.placeholder.com/800x600?text=E-Commerce+Platform',
-    category: 'E-commerce',
+    description: 'A full-featured restaurant management app with ordering, a rewards system, delivery, full menu support, and payment processing.',
+    image: '../../images/restaurant/1.png',
+    images: [
+      '../../images/restaurant/1.png',
+      '../../images/restaurant/2.png',
+      '../../images/restaurant/3.png',
+      '../../images/restaurant/4.png',
+      '../../images/restaurant/5.png',
+      '../../images/restaurant/6.png',
+      '../../images/restaurant/7.png',
+      '../../images/restaurant/8.png',
+      '../../images/restaurant/9.png',
+      '../../images/restaurant/10.png',
+    ],
+    category: 'Food Service',
     category_slug: 'e-commerce',
-    client: 'RetailGrowth Inc.',
-    year: 2023,
+    client: '{REDACTED}',
+    year: 2025,
     demo_url: 'https://retailgrowth-demo.com',
     featured: true,
-    technologies: ['React', 'Node.js', 'Express', 'MySQL', 'Tailwind CSS']
-  },
+    technologies: ['Apple iOS', 'Android', 'Windows PC']
+  }, /*
   {
     id: 2,
     title: 'Health Monitoring App',
@@ -9404,17 +9730,17 @@ const mockProjects = [
     demo_url: 'https://efficiency-suite.com',
     featured: false,
     technologies: ['React', 'Node.js', 'Express', 'MySQL', 'TypeScript']
-  }
+  } */
 ];
 
-const mockCategories = [
+const mockCategories = [ /*
   { id: 1, name: 'Web Development', slug: 'web-development' },
   { id: 2, name: 'Mobile App', slug: 'mobile-app' },
   { id: 3, name: 'UI/UX Design', slug: 'ui-ux-design' },
-  { id: 4, name: 'E-commerce', slug: 'e-commerce' }
+  { id: 4, name: 'E-commerce', slug: 'e-commerce' } */
 ];
 
-const mockTestimonials = [
+const mockTestimonials = [ /*
   {
     id: 1,
     name: 'Sarah Johnson',
@@ -9454,7 +9780,7 @@ const mockTestimonials = [
     quote: 'The work on our enterprise dashboard was exceptional. He created an intuitive interface that simplified complex data visualization for our users. His communication throughout the project was clear and professional, making the entire process smooth and efficient.',
     rating: 4,
     featured: false
-  }
+  } */
 ];
 
 /**
@@ -9497,32 +9823,42 @@ export const fetchProjectBySlug = async (slug) => {
   if (USE_MOCK_DATA) {
     // Simulate network delay
     await new Promise(resolve => setTimeout(resolve, 500));
-    
+
     const project = mockProjects.find(p => p.slug === slug);
-    
+
     if (!project) {
       return null;
     }
-    
+
     // Add related projects (for mock data)
-    const sameCategory = mockProjects.filter(p => 
-      p.category_slug === project.category_slug && p.id !== project.id
+    const sameCategory = mockProjects.filter(p =>
+        p.category_slug === project.category_slug && p.id !== project.id
     );
-    
+
     project.relatedProjects = sameCategory
-      .slice(0, 3)
-      .map(p => ({
-        id: p.id,
-        title: p.title,
-        slug: p.slug,
-        image: p.image
-      }));
-    
+        .slice(0, 3)
+        .map(p => ({
+          id: p.id,
+          title: p.title,
+          slug: p.slug,
+          // Handle both old and new image format for related projects
+          image: Array.isArray(p.images) ? p.images[0] : p.image
+        }));
+
+    // For backward compatibility, set image property to first image in array
+    if (Array.isArray(project.images) && !project.image) {
+      project.image = project.images[0];
+    }
+
     return project;
   }
-  
+
   try {
     const response = await fetchApi(`/portfolio/${slug}`);
+    // Ensure backward compatibility for API responses
+    if (response.data.images && !response.data.image) {
+      response.data.image = response.data.images[0];
+    }
     return response.data;
   } catch (error) {
     if (error.message.includes('404')) {
@@ -9675,10 +10011,32 @@ export default {
 ```js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/eshomali.github.io/"
-})
+  base: '/', // For user/org sites (username.github.io)
+  build: {
+    outDir: 'dist',
+    // Ensure production mode
+    minify: 'terser',
+    sourcemap: false,
+    terserOptions: {
+      compress: {
+        drop_console: true,
+      },
+    }
+  },
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+	  'crypto': 'crypto-browserify'
+    },
+  },
+  define: {
+    'process.env.NODE_ENV': JSON.stringify('production')
+  },
+});
 ```
 
