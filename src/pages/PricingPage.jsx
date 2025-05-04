@@ -204,40 +204,46 @@ const PricingPage = () => {
                   <div className="tier-label">
                     <h4>{tierName}</h4>
                   </div>
-                  {services.map((service, serviceIndex) => {
-                    const tier = service.tiers[tierIndex];
-                    return (
-                        <div
-                            key={serviceIndex}
-                            className={`pricing-card ${tier.featured ? 'featured' : ''}`}
-                        >
-                          {tier.featured && <div className="featured-badge">Most Popular</div>}
-                          <div className="setup-fee">
-                            <span className="amount">{tier.setupFee}</span>
-                            <span className="label">Setup Fee</span>
+                  <div className="pricing-cards-grid">
+                    {services.map((service, serviceIndex) => {
+                      const tier = service.tiers[tierIndex];
+                      return (
+                          <div
+                              key={serviceIndex}
+                              className={`pricing-card ${tier.featured ? 'featured' : ''}`}
+                          >
+                            {tier.featured && <div className="featured-badge">Most Popular</div>}
+                            <div className="setup-fee">
+                              <br/>
+                              <span className="setup-title">{service.title}</span>
+                              <span className="amount">{tier.setupFee}</span>
+                              <span className="label">Initial Setup Fee</span>
+                            </div>
+                            <div className="tier-features">
+                              {tier.features.map((feature, featureIndex) => (
+                                  <span key={featureIndex} className="feature-tag">
+                                    {feature}
+                                  </span>
+                              ))}
+                            </div>
                           </div>
-                          <div className="tier-features">
-                            {tier.features.map((feature, featureIndex) => (
-                                <span key={featureIndex} className="feature-tag">
-                          {feature}
-                        </span>
-                            ))}
-                          </div>
-                        </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
             ))}
 
             <div className="pricing-notes">
-              <h3>All Plans Include:</h3>
+              <h3>What’s Included in Your Monthly Fee?</h3>
               <ul>
-                <li><i className="fas fa-check"></i> Free initial consultation</li>
-                <li><i className="fas fa-check"></i> Hosting and security updates</li>
-                <li><i className="fas fa-check"></i> Regular maintenance</li>
-                <li><i className="fas fa-check"></i> Dedicated support</li>
-                <li><i className="fas fa-check"></i> Analytics reporting</li>
-                <li><i className="fas fa-check"></i> SSL certificate</li>
+                <li><i className="fas fa-check"></i> Fully Managed Hosting & Infrastructure</li>
+                <li><i className="fas fa-check"></i> Ongoing Maintenance & Security</li>
+                <li><i className="fas fa-check"></i> Up to 3–7 Changes Per Month</li>
+                <li><i className="fas fa-check"></i> Email & Transactional Systems</li>
+                <li><i className="fas fa-check"></i> Robust Search Engine Optimization</li>
+                <li><i className="fas fa-check"></i> Slick Marketing Tools</li>
+                <li><i className="fas fa-check"></i> Comprehensive Support</li>
+                <li><i className="fas fa-check"></i> Flat, Predictable Pricing</li>
               </ul>
             </div>
 
