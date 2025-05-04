@@ -223,14 +223,6 @@ const PricingPage = () => {
                         </span>
                             ))}
                           </div>
-                          <Button
-                              to="/contact"
-                              variant={tier.featured ? 'primary' : 'outline'}
-                              size="medium"
-                              className="tier-button"
-                          >
-                            Get Started
-                          </Button>
                         </div>
                     );
                   })}

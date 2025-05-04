@@ -75,19 +75,41 @@
   grid-template-columns: 200px repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 2rem;
+  position: relative;
 }
 
+/* Tier label - now a highlighted section */
 .tier-label {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding-right: 2rem;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tier-label::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+  pointer-events: none;
 }
 
 .tier-label h4 {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #f9fafb;
+  color: white;
+  margin: 0;
+  position: relative;
+  z-index: 1;
 }
 
 /* Individual pricing cards - All now use featured styling */
@@ -242,7 +264,11 @@
   }
   
   .tier-label {
-    padding-right: 1rem;
+    padding: 0.875rem 1.25rem;
+  }
+  
+  .tier-label h4 {
+    font-size: 1.25rem;
   }
 }
 
@@ -258,9 +284,8 @@
   }
   
   .tier-label {
-    justify-content: center;
-    padding-right: 0;
     margin-bottom: 1rem;
+    text-align: center;
   }
   
   .pricing-service-header {
@@ -316,8 +341,12 @@
     padding: 1.25rem;
   }
   
+  .tier-label {
+    padding: 0.75rem 1rem;
+  }
+  
   .tier-label h4 {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
   }
   
   .pricing-service-header h3 {
