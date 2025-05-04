@@ -13,14 +13,14 @@ const PricingPage = () => {
           name: 'Starter',
           setupFee: '$449',
           features: [
-            'Basic multi-page website',
-            'Template design',
-            'SEO',
-            'Hosting',
-            'Security updates',
-            'Email support',
+            'Full website',
+            'Basic design',
+            'Standard SEO',
+            'Web Hosting',
+            'Security',
+            'Email Support',
             'Analytics',
-            '3 changes/month'
+            '3 Changes / month'
           ]
         },
         {
@@ -58,12 +58,10 @@ const PricingPage = () => {
           name: 'Starter',
           setupFee: '$1449',
           features: [
-            'Basic single-platform app',
             'iOS or Android',
-            'Core functionality',
-            'Basic UI',
-            'Hosting',
-            'Security updates',
+            'Basic Interface',
+            'App Hosting',
+            'Security',
             'Email support',
             'Analytics',
             '3 changes/month'
@@ -100,7 +98,7 @@ const PricingPage = () => {
       ]
     },
     webMobileApp: {
-      title: 'Web + Mobile App',
+      title: 'Web + Mobile',
       monthlyFee: '$600',
       tiers: [
         {
@@ -212,18 +210,25 @@ const PricingPage = () => {
                               key={serviceIndex}
                               className={`pricing-card ${tier.featured ? 'featured' : ''}`}
                           >
+                            {/* Add service title for mobile */}
+                            <div className="service-title">
+                              {service.title === 'Web + Mobile App' ? 'Web + Mobile' : service.title}
+                            </div>
+
                             {tier.featured && <div className="featured-badge">Most Popular</div>}
+
                             <div className="setup-fee">
                               <br/>
-                              <span className="setup-title">{service.title}</span>
+                              <h6 className="setup-title">{service.title}</h6>
                               <span className="amount">{tier.setupFee}</span>
                               <span className="label">Initial Setup Fee</span>
                             </div>
+
                             <div className="tier-features">
                               {tier.features.map((feature, featureIndex) => (
                                   <span key={featureIndex} className="feature-tag">
-                                    {feature}
-                                  </span>
+                            {feature}
+                          </span>
                               ))}
                             </div>
                           </div>
