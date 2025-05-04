@@ -30,6 +30,7 @@
   grid-template-columns: 200px repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 3rem;
+  position: relative;
 }
 
 .pricing-header-spacer {
@@ -43,6 +44,7 @@
   border-radius: 1rem;
   border: 1px solid #374151;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
 }
 
 .pricing-service-header:hover {
@@ -81,33 +83,52 @@
   gap: 2rem;
   margin-bottom: 3rem;
   position: relative;
-  padding-top: 2rem;
 }
 
-/* Break line before each tier section */
-.pricing-tier-row::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    rgba(99, 102, 241, 0.3) 10%,
-    rgba(99, 102, 241, 0.3) 90%,
-    transparent
-  );
-}
-
-/* First tier doesn't need the line */
-.pricing-tier-row:first-of-type {
-  padding-top: 0;
-}
-
-.pricing-tier-row:first-of-type::before {
-  display: none;
+/* Vertical separator lines for desktop */
+@media (min-width: 993px) {
+  .pricing-service-header:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(99, 102, 241, 0.3) 20%,
+      rgba(99, 102, 241, 0.3) 80%,
+      transparent
+    );
+  }
+  
+  .pricing-card:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 90%;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(99, 102, 241, 0.3) 10%,
+      rgba(99, 102, 241, 0.3) 90%,
+      transparent
+    );
+  }
+  
+  /* Remove horizontal lines on desktop */
+  .pricing-tier-row::before {
+    display: none;
+  }
+  
+  .pricing-tier-row {
+    padding-top: 0;
+  }
 }
 
 /* Tier label - now a highlighted section */
@@ -304,6 +325,7 @@
   }
 }
 
+/* Mobile layout with horizontal lines */
 @media (max-width: 992px) {
   .pricing-headers,
   .pricing-tier-row {
@@ -333,15 +355,34 @@
     grid-template-columns: 1fr;
   }
   
-  /* Adjust break lines for mobile */
+  /* Horizontal break lines for mobile */
+  .pricing-tier-row {
+    padding-top: 2rem;
+  }
+  
   .pricing-tier-row::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
     background: linear-gradient(
       to right,
       transparent,
-      rgba(99, 102, 241, 0.3) 5%,
-      rgba(99, 102, 241, 0.3) 95%,
+      rgba(99, 102, 241, 0.3) 10%,
+      rgba(99, 102, 241, 0.3) 90%,
       transparent
     );
+  }
+  
+  /* First tier doesn't need the line */
+  .pricing-tier-row:first-of-type {
+    padding-top: 0;
+  }
+  
+  .pricing-tier-row:first-of-type::before {
+    display: none;
   }
 }
 
