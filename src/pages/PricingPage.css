@@ -24,37 +24,31 @@
   margin: 0 auto;
 }
 
-.pricing-grid {
+/* Service headers row */
+.pricing-headers {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 200px repeat(3, 1fr);
   gap: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
 }
 
-.pricing-column {
-  background-color: #1f2937;
-  border-radius: 1rem;
-  overflow: hidden;
-  border: 1px solid #374151;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.pricing-header-spacer {
+  /* Empty space for tier labels column */
 }
 
-.pricing-column:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.pricing-header {
-  padding: 2rem;
+.pricing-service-header {
   text-align: center;
+  padding: 1.5rem;
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
-  border-bottom: 1px solid #374151;
+  border-radius: 1rem 1rem 0 0;
+  border: 1px solid #374151;
+  border-bottom: none;
 }
 
-.pricing-header h3 {
+.pricing-service-header h3 {
   font-size: 1.75rem;
   color: #f9fafb;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .monthly-fee {
@@ -65,33 +59,55 @@
 }
 
 .monthly-fee .amount {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   color: #6366f1;
 }
 
 .monthly-fee .period {
-  font-size: 1rem;
+  font-size: 0.875rem;
   color: #9ca3af;
 }
 
-.pricing-tier {
+/* Pricing tier rows */
+.pricing-tier-row {
+  display: grid;
+  grid-template-columns: 200px repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.tier-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 2rem;
+}
+
+.tier-label h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f9fafb;
+}
+
+/* Individual pricing cards */
+.pricing-card {
+  background-color: #1f2937;
+  border-radius: 1rem;
   padding: 2rem;
-  border-bottom: 1px solid #374151;
+  border: 1px solid #374151;
   position: relative;
-  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.pricing-tier:last-child {
-  border-bottom: none;
+.pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.pricing-tier:hover {
-  background-color: rgba(99, 102, 241, 0.05);
-}
-
-.pricing-tier.featured {
+.pricing-card.featured {
   background-color: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.3);
 }
 
 .featured-badge {
@@ -107,15 +123,9 @@
   border-bottom-right-radius: 0.5rem;
 }
 
-.tier-name {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #f9fafb;
-  margin-bottom: 1rem;
-}
-
 .setup-fee {
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 
 .setup-fee .amount {
@@ -130,7 +140,7 @@
   color: #9ca3af;
 }
 
-/* Feature boxes styling */
+/* Feature list */
 .tier-features {
   display: flex;
   flex-direction: column;
@@ -158,29 +168,24 @@
   font-size: 1rem;
 }
 
-.feature-tag:hover {
+.pricing-card:hover .feature-tag {
   background-color: rgba(31, 41, 55, 0.8);
   border-color: rgba(99, 102, 241, 0.3);
-  transform: translateX(2px);
 }
 
-.pricing-tier.featured .feature-tag {
+.pricing-card.featured .feature-tag {
   background-color: rgba(99, 102, 241, 0.08);
   border-color: rgba(99, 102, 241, 0.2);
-}
-
-.pricing-tier.featured .feature-tag:hover {
-  background-color: rgba(99, 102, 241, 0.12);
-  border-color: rgba(99, 102, 241, 0.4);
 }
 
 .tier-button {
   width: 100%;
 }
 
+/* Additional sections */
 .pricing-notes {
   max-width: 800px;
-  margin: 0 auto 4rem;
+  margin: 4rem auto;
   text-align: center;
   padding: 3rem;
   background-color: #1f2937;
@@ -240,20 +245,41 @@
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .pricing-grid {
+  .pricing-headers,
+  .pricing-tier-row {
+    grid-template-columns: 150px repeat(3, 1fr);
     gap: 1.5rem;
+  }
+  
+  .tier-label {
+    padding-right: 1rem;
   }
 }
 
 @media (max-width: 992px) {
-  .pricing-grid {
+  .pricing-headers,
+  .pricing-tier-row {
     grid-template-columns: 1fr;
-    max-width: 600px;
-    margin: 0 auto 4rem;
+    gap: 1rem;
   }
   
-  .pricing-column {
+  .pricing-header-spacer {
+    display: none;
+  }
+  
+  .tier-label {
+    justify-content: center;
+    padding-right: 0;
     margin-bottom: 1rem;
+  }
+  
+  .pricing-service-header {
+    margin-bottom: 1rem;
+  }
+  
+  .pricing-card {
+    max-width: 400px;
+    margin: 0 auto;
   }
   
   .pricing-notes ul {
@@ -270,16 +296,12 @@
     margin-bottom: 3rem;
   }
   
-  .pricing-header {
-    padding: 1.5rem;
-  }
-  
-  .pricing-tier {
+  .pricing-card {
     padding: 1.5rem;
   }
   
   .monthly-fee .amount {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   
   .setup-fee .amount {
@@ -300,16 +322,16 @@
     padding: 3rem 0;
   }
   
-  .pricing-header {
+  .pricing-card {
     padding: 1.25rem;
   }
   
-  .pricing-tier {
-    padding: 1.25rem;
-  }
-  
-  .tier-name {
+  .tier-label h4 {
     font-size: 1.25rem;
+  }
+  
+  .pricing-service-header h3 {
+    font-size: 1.5rem;
   }
   
   .feature-tag {

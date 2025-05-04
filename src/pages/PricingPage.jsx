@@ -156,46 +156,9 @@ const PricingPage = () => {
     }
   };
 
-  const PricingColumn = ({ data, category }) => (
-      <div className="pricing-column">
-        <div className="pricing-header">
-          <h3>{data.title}</h3>
-          <div className="monthly-fee">
-            <span className="amount">{data.monthlyFee}</span>
-            <span className="period">/month</span>
-          </div>
-        </div>
-
-        {data.tiers.map((tier, index) => (
-            <div
-                key={index}
-                className={`pricing-tier ${tier.featured ? 'featured' : ''}`}
-            >
-              {tier.featured && <div className="featured-badge">Most Popular</div>}
-              <div className="tier-name">{tier.name}</div>
-              <div className="setup-fee">
-                <span className="amount">{tier.setupFee}</span>
-                <span className="label">Setup Fee</span>
-              </div>
-              <div className="tier-features">
-                {tier.features.map((feature, featureIndex) => (
-                    <span key={featureIndex} className="feature-tag">
-                {feature}
-              </span>
-                ))}
-              </div>
-              <Button
-                  to="/contact"
-                  variant={tier.featured ? 'primary' : 'outline'}
-                  size="medium"
-                  className="tier-button"
-              >
-                Get Started
-              </Button>
-            </div>
-        ))}
-      </div>
-  );
+  // Create arrays for each tier level
+  const tiers = ['Starter', 'Plus', 'Pro'];
+  const services = [pricingData.webApp, pricingData.mobileApp, pricingData.webMobileApp];
 
   return (
       <>
@@ -221,11 +184,58 @@ const PricingPage = () => {
               <p>Select the perfect plan for your business needs. All plans include hosting, maintenance, and regular updates.</p>
             </div>
 
-            <div className="pricing-grid">
-              <PricingColumn data={pricingData.webApp} category="web" />
-              <PricingColumn data={pricingData.mobileApp} category="mobile" />
-              <PricingColumn data={pricingData.webMobileApp} category="web-mobile" />
+            {/* Service Type Headers */}
+            <div className="pricing-headers">
+              <div className="pricing-header-spacer"></div>
+              {services.map((service, index) => (
+                  <div key={index} className="pricing-service-header">
+                    <h3>{service.title}</h3>
+                    <div className="monthly-fee">
+                      <span className="amount">{service.monthlyFee}</span>
+                      <span className="period">/month</span>
+                    </div>
+                  </div>
+              ))}
             </div>
+
+            {/* Pricing Tiers */}
+            {tiers.map((tierName, tierIndex) => (
+                <div key={tierName} className="pricing-tier-row">
+                  <div className="tier-label">
+                    <h4>{tierName}</h4>
+                  </div>
+                  {services.map((service, serviceIndex) => {
+                    const tier = service.tiers[tierIndex];
+                    return (
+                        <div
+                            key={serviceIndex}
+                            className={`pricing-card ${tier.featured ? 'featured' : ''}`}
+                        >
+                          {tier.featured && <div className="featured-badge">Most Popular</div>}
+                          <div className="setup-fee">
+                            <span className="amount">{tier.setupFee}</span>
+                            <span className="label">Setup Fee</span>
+                          </div>
+                          <div className="tier-features">
+                            {tier.features.map((feature, featureIndex) => (
+                                <span key={featureIndex} className="feature-tag">
+                          {feature}
+                        </span>
+                            ))}
+                          </div>
+                          <Button
+                              to="/contact"
+                              variant={tier.featured ? 'primary' : 'outline'}
+                              size="medium"
+                              className="tier-button"
+                          >
+                            Get Started
+                          </Button>
+                        </div>
+                    );
+                  })}
+                </div>
+            ))}
 
             <div className="pricing-notes">
               <h3>All Plans Include:</h3>
