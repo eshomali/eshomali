@@ -130,41 +130,47 @@
   color: #9ca3af;
 }
 
-/* Feature tags styling */
+/* Feature boxes styling */
 .tier-features {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 0.5rem;
   margin-bottom: 2rem;
-  min-height: 120px;
 }
 
 .feature-tag {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  padding: 0.375rem 0.75rem;
-  background-color: rgba(99, 102, 241, 0.1);
+  padding: 0.5rem 1rem;
+  background-color: rgba(31, 41, 55, 0.5);
   color: #e5e7eb;
-  border-radius: 9999px;
-  font-size: 0.875rem;
+  border-radius: 0.375rem;
+  font-size: 0.8125rem;
   font-weight: 500;
-  border: 1px solid rgba(99, 102, 241, 0.2);
+  border: 1px solid rgba(55, 65, 81, 0.5);
   transition: all 0.2s ease;
 }
 
+.feature-tag::before {
+  content: '•';
+  margin-right: 0.75rem;
+  color: #6366f1;
+  font-size: 1rem;
+}
+
 .feature-tag:hover {
-  background-color: rgba(99, 102, 241, 0.15);
+  background-color: rgba(31, 41, 55, 0.8);
   border-color: rgba(99, 102, 241, 0.3);
-  transform: translateY(-1px);
+  transform: translateX(2px);
 }
 
 .pricing-tier.featured .feature-tag {
-  background-color: rgba(99, 102, 241, 0.15);
-  border-color: rgba(99, 102, 241, 0.3);
+  background-color: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.2);
 }
 
 .pricing-tier.featured .feature-tag:hover {
-  background-color: rgba(99, 102, 241, 0.2);
+  background-color: rgba(99, 102, 241, 0.12);
   border-color: rgba(99, 102, 241, 0.4);
 }
 
@@ -237,10 +243,6 @@
   .pricing-grid {
     gap: 1.5rem;
   }
-  
-  .tier-features {
-    min-height: 150px;
-  }
 }
 
 @media (max-width: 992px) {
@@ -252,10 +254,6 @@
   
   .pricing-column {
     margin-bottom: 1rem;
-  }
-  
-  .tier-features {
-    min-height: auto;
   }
   
   .pricing-notes ul {
@@ -315,8 +313,8 @@
   }
   
   .feature-tag {
-    padding: 0.25rem 0.625rem;
-    font-size: 0.8125rem;
+    padding: 0.375rem 0.875rem;
+    font-size: 0.75rem;
   }
   
   .pricing-notes {
