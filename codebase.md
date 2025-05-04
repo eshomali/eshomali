@@ -186,7 +186,7 @@ dist-ssr
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/dev/restaurant-app",
+    "last_opened_file_path": "C:/dev/eshomali.github.io",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -213,6 +213,7 @@ dist-ssr
       <updated>1745348255810</updated>
       <workItem from="1745348257410" duration="5999000" />
       <workItem from="1745681239971" duration="9724000" />
+      <workItem from="1746114205581" duration="7059000" />
     </task>
     <servers />
   </component>
@@ -557,14 +558,14 @@ This is a file of the type: SVG Image
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://eshomali.com/">
+    <meta property="og:url" content="https://eshomali.github.io/">
     <meta property="og:title" content="Essa Shomali - Professional App Developer">
     <meta property="og:description" content="Helping businesses transform their digital presence with modern, accessible, and high-performance web applications.">
     <meta property="og:image" content="/images/og-image.jpg">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://eshomali.com/">
+    <meta property="twitter:url" content="https://eshomali.github.io/">
     <meta property="twitter:title" content="Essa Shomali - Professional App Developer">
     <meta property="twitter:description" content="Helping businesses transform their digital presence with modern, accessible, and high-performance web applications.">
     <meta property="twitter:image" content="/images/og-image.jpg">
@@ -2926,7 +2927,7 @@ const Footer = () => {
                   <Link to="/about">About</Link>
                 </li>
                 <li>
-                  <Link to="/portfolio">Projects</Link>
+                  <Link to="/portfolio">Applications</Link>
                 </li>
                 <li>
                   <Link to="/contact">Contact</Link>
@@ -3145,7 +3146,7 @@ const Navbar = ({ isMobile = false, closeMobileMenu = () => {} }) => {
             className={({ isActive }) => isActive ? 'active' : ''}
             onClick={handleClick}
           >
-            Projects
+            Applications
           </NavLink>
         </li>
         <li>
@@ -3285,6 +3286,8 @@ const Layout = ({ children }) => {
   // Scroll to top on route change
   useEffect(() => {
     window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
   }, [pathname]);
   
   // Add or remove scroll classes for page animations
@@ -3532,232 +3535,288 @@ import Button from '../common/Button';
 import aboutImage from '../../assets/images/about-large.jpg';
 
 const About = () => {
-  const [activeTab, setActiveTab] = useState('skills');
-  
+  const [activeTab, setActiveTab] = useState('services');
+
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
-  
-  const skills = [
-    { name: 'AI Integration', percentage: 100 },
-    { name: 'Content Management', percentage: 100 },
-    { name: 'Location-Based Features', percentage: 100 },
-    { name: 'Payment Systems', percentage: 100 },
-    { name: 'Client Management', percentage: 100 },
-    { name: 'Real-Time Notifications', percentage: 100 },
-    { name: 'Security & Analytics', percentage: 100 },
-    { name: 'Enhanced User Experience', percentage: 100 },
-  ];
-  
-  const experience = [
+
+  const services = [
     {
-      position: 'Senior Software Engineer',
-      company: 'MedImpact Healthcare Systems',
-      period: '2022 - Present',
-      description: ''
+      title: "Design & User Experience",
+      description: "Tailored designs to match your branding, enhancing user engagement through intuitive interfaces.",
+      icon: "fas fa-palette"
     },
     {
-      position: 'Software Engineer III',
-      company: 'Comerica',
-      period: '2019 - 2022',
-      description: ''
+      title: "E-Commerce & Sales",
+      description: "Setup and management of online stores, including payment gateways and inventory systems.",
+      icon: "fas fa-shopping-cart"
     },
     {
-      position: 'Software Engineer',
-      company: 'Asset Health',
-      period: '2018 - 2019',
-      description: ''
+      title: "Content Management",
+      description: "Enable easy content updates with systems like SquareSpace and Shopify for seamless maintenance.",
+      icon: "fas fa-file-alt"
     },
     {
-      position: 'Software Developer',
-      company: 'Complete Data Products',
-      period: '2016 - 2018',
-      description: ''
+      title: "Mobile & Cross-Platform",
+      description: "iOS and Android apps to complement your web services for a cohesive digital presence.",
+      icon: "fas fa-mobile-alt"
+    },
+    {
+      title: "Security & Compliance",
+      description: "Implement robust security systems and ensure compliance with industry regulations.",
+      icon: "fas fa-shield-alt"
+    },
+    {
+      title: "AI Integration",
+      description: "Features like chatbots, location services, and real-time notifications for smart enhancements.",
+      icon: "fas fa-robot"
     }
   ];
-  
-  const education = [
+
+  const features = [
     {
-      degree: 'B.S.E. Computer Engineering',
-      institution: 'Oakland University, School of Engineering',
-      period: '2014 - 2018',
-      description: 'Minor in Computer Science, Artificial Intelligence'
+      title: "User Accounts",
+      description: "Secure authentication and personalized user experiences",
+      icon: "fas fa-user-circle"
     },
     {
-      degree: 'Certificates',
-      institution: '\n' +
-          'Certified ScrumMaster (CSM)',
-      period: '',
-      description: 'Credential ID 1700324'
+      title: "Online Ordering",
+      description: "Streamlined purchasing process with order tracking",
+      icon: "fas fa-shopping-bag"
+    },
+    {
+      title: "Table Reservations",
+      description: "Digital booking system for hospitality businesses",
+      icon: "fas fa-utensils"
+    },
+    {
+      title: "Inventory Management",
+      description: "Real-time stock tracking and automated alerts",
+      icon: "fas fa-boxes"
+    },
+    {
+      title: "Marketplace Integration",
+      description: "Connect with third-party platforms and vendors",
+      icon: "fas fa-store"
+    },
+    {
+      title: "Check-in / Check-out",
+      description: "Simplified process for hospitality and events",
+      icon: "fas fa-clipboard-check"
+    },
+    {
+      title: "Customer Loyalty Program",
+      description: "Rewards systems to encourage repeat business",
+      icon: "fas fa-award"
+    },
+    {
+      title: "Payment Processing",
+      description: "Secure handling of multiple payment methods",
+      icon: "fas fa-credit-card"
+    },
+    {
+      title: "Progress Tracking",
+      description: "Visualize goals and achievements with analytics",
+      icon: "fas fa-chart-bar"
+    },
+    {
+      title: "Scheduling",
+      description: "Automated calendars and appointment systems",
+      icon: "fas fa-calendar-alt"
     }
   ];
 
   return (
-    <section id="about" className="about-section">
-      <div className="container">
-        <div className="section-title">
-          <h2>About Me</h2>
-        </div>
+      <section id="about" className="about-section">
+        <div className="container">
+          <div className="section-title">
+            <h2>About Me</h2>
+          </div>
 
-        <div className="about-container">
-          <div className="about-image">
-            <div className="image-wrapper">
-              <img 
-                src={aboutImage}
-                alt="Essa Shomali - Professional App Developer"
-                loading="lazy"
-                style={{
-                  width: '280px',
-                  height: '280px',
-                  overflow: 'hidden',
-                  borderRadius: '0%',
-                  border: '2px solid #374151',
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
-                  backgroundColor: '#111827',
-                  display: 'flex', // Add flexbox for centering
-                  justifyContent: 'center', // Center horizontally
-                  alignItems: 'center', // Center vertically
-                  margin: '0 auto', // Center the entire div in its container
-                }}
-              />
-              <div className="experience-badge" aria-label="8+ years of experience">
-                <span className="years">8+</span>
-                <span className="text">Years of<br />Experience</span>
+          <div className="about-container">
+            <div className="about-image">
+              <div className="image-wrapper">
+                <img
+                    src={aboutImage}
+                    alt="Essa Shomali - Professional App Developer"
+                    loading="lazy"
+                    style={{
+                      width: '280px',
+                      height: '280px',
+                      overflow: 'hidden',
+                      borderRadius: '0%',
+                      border: '2px solid #374151',
+                      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+                      backgroundColor: '#111827',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      margin: '0 auto',
+                    }}
+                />
+                <div className="experience-badge" aria-label="8+ years of experience">
+                  <span className="years">8+</span>
+                  <span className="text">Years of<br />Experience</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="about-content">
+              <h3>Professional App Developer</h3>
+
+              <p className="lead">
+                With over 8 years of experience, I create exceptional digital experiences that are aligned with your business goals.
+              </p>
+
+              <div className="about-tabs">
+                <div className="tabs-navigation">
+                  <button
+                      className={`tab-button ${activeTab === 'services' ? 'active' : ''}`}
+                      onClick={() => handleTabChange('services')}
+                      aria-selected={activeTab === 'services'}
+                      aria-controls="services-tab"
+                      id="services-tab-button"
+                  >
+                    Services
+                  </button>
+                  <button
+                      className={`tab-button ${activeTab === 'features' ? 'active' : ''}`}
+                      onClick={() => handleTabChange('features')}
+                      aria-selected={activeTab === 'features'}
+                      aria-controls="features-tab"
+                      id="features-tab-button"
+                  >
+                    Features
+                  </button>
+                </div>
+
+                <div className="tabs-content">
+                  <div
+                      id="services-tab"
+                      className={`tab-panel ${activeTab === 'services' ? 'active' : ''}`}
+                      role="tabpanel"
+                      aria-labelledby="services-tab-button"
+                      hidden={activeTab !== 'services'}
+                  >
+                    <div className="services-grid">
+                      {services.map((service, index) => (
+                          <div key={index} className="service-item">
+                            <div className="service-icon">
+                              <i className={service.icon}></i>
+                            </div>
+                            <div className="service-content">
+                              <h4>{service.title}</h4>
+                              <p>{service.description}</p>
+                            </div>
+                          </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div
+                      id="features-tab"
+                      className={`tab-panel ${activeTab === 'features' ? 'active' : ''}`}
+                      role="tabpanel"
+                      aria-labelledby="features-tab-button"
+                      hidden={activeTab !== 'features'}
+                  >
+                    <div className="features-grid">
+                      {features.map((feature, index) => (
+                          <div key={index} className="feature-item">
+                            <div className="feature-icon">
+                              <i className={feature.icon}></i>
+                            </div>
+                            <div className="feature-content">
+                              <h4>{feature.title}</h4>
+                              <p>{feature.description}</p>
+                            </div>
+                          </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="about-buttons">
+                <Button
+                    to="/contact"
+                    variant="outline"
+                    aria-label="Contact me"
+                >
+                  <i className="fas fa-envelope" aria-hidden="true"></i> &nbsp; Contact Me
+                </Button>
               </div>
             </div>
           </div>
-
-          <div className="about-content">
-            <h3>Professional App Developer</h3>
-            
-            <p className="lead">
-              I help businesses grow by building modern, accessible, and high-performance applications.
-            </p>
-            
-            <p>
-              With over 8 years of experience, I create exceptional digital experiences that are visually stunning, highly functional, and aligned with your business goals.
-            </p>
-            
-            <div className="about-tabs">
-              <div className="tabs-navigation">
-                <button 
-                  className={`tab-button ${activeTab === 'skills' ? 'active' : ''}`}
-                  onClick={() => handleTabChange('skills')}
-                  aria-selected={activeTab === 'skills'}
-                  aria-controls="skills-tab"
-                  id="skills-tab-button"
-                >
-                  Features
-                </button>
-                <button 
-                  className={`tab-button ${activeTab === 'experience' ? 'active' : ''}`}
-                  onClick={() => handleTabChange('experience')}
-                  aria-selected={activeTab === 'experience'}
-                  aria-controls="experience-tab"
-                  id="experience-tab-button"
-                >
-                  Experience
-                </button>
-                <button 
-                  className={`tab-button ${activeTab === 'education' ? 'active' : ''}`}
-                  onClick={() => handleTabChange('education')}
-                  aria-selected={activeTab === 'education'}
-                  aria-controls="education-tab"
-                  id="education-tab-button"
-                >
-                  Education
-                </button>
-              </div>
-              
-              <div className="tabs-content">
-                <div 
-                  id="skills-tab" 
-                  className={`tab-panel ${activeTab === 'skills' ? 'active' : ''}`}
-                  role="tabpanel"
-                  aria-labelledby="skills-tab-button"
-                  hidden={activeTab !== 'skills'}
-                >
-                  <div className="skills-container">
-                    {skills.map((skill, index) => (
-                      <div key={index} className="skill-item">
-                        <div className="skill-info">
-                          <h4>{skill.name}</h4>
-                          <span className="skill-percentage">{skill.percentage}%</span>
-                        </div>
-                        <div className="skill-bar">
-                          <div 
-                            className="skill-progress" 
-                            style={{ width: `${skill.percentage}%` }}
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            aria-valuenow={skill.percentage}
-                            role="progressbar"
-                          ></div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div 
-                  id="experience-tab" 
-                  className={`tab-panel ${activeTab === 'experience' ? 'active' : ''}`}
-                  role="tabpanel"
-                  aria-labelledby="experience-tab-button"
-                  hidden={activeTab !== 'experience'}
-                >
-                  <div className="timeline">
-                    {experience.map((job, index) => (
-                      <div key={index} className="timeline-item">
-                        <div className="timeline-dot"></div>
-                        <div className="timeline-date">{job.period}</div>
-                        <div className="timeline-content">
-                          <h4>{job.position}</h4>
-                          <h5>{job.company}</h5>
-                          <p>{job.description}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                
-                <div 
-                  id="education-tab" 
-                  className={`tab-panel ${activeTab === 'education' ? 'active' : ''}`}
-                  role="tabpanel"
-                  aria-labelledby="education-tab-button"
-                  hidden={activeTab !== 'education'}
-                >
-                  <div className="timeline">
-                    {education.map((edu, index) => (
-                      <div key={index} className="timeline-item">
-                        <div className="timeline-dot"></div>
-                        <div className="timeline-date">{edu.period}</div>
-                        <div className="timeline-content">
-                          <h4>{edu.degree}</h4>
-                          <h5>{edu.institution}</h5>
-                          <p>{edu.description}</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="about-buttons">
-              <Button 
-                to="/contact"
-                variant="outline"
-                aria-label="Contact me"
-              >
-                <i className="fas fa-envelope" aria-hidden="true"></i> &nbsp; Contact Me
-              </Button>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
+
+        <style jsx>{`
+        .services-grid, .features-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 1.5rem;
+        }
+        
+        .service-item, .feature-item {
+          background: rgba(31, 41, 55, 0.5);
+          border-radius: 1rem;
+          padding: 1.5rem;
+          border: 1px solid rgba(55, 65, 81, 0.5);
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: flex-start;
+          gap: 1rem;
+          height: 100%;
+        }
+        
+        .service-item:hover, .feature-item:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
+          border-color: rgba(99, 102, 241, 0.3);
+        }
+        
+        .service-icon, .feature-icon {
+          width: 50px;
+          height: 50px;
+          min-width: 50px;
+          border-radius: 12px;
+          background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.1));
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.25rem;
+          color: #6366f1;
+          transition: all 0.3s ease;
+        }
+        
+        .service-item:hover .service-icon, .feature-item:hover .feature-icon {
+          background: #6366f1;
+          color: white;
+          transform: rotateY(180deg);
+          transition: all 0.5s ease;
+        }
+        
+        .service-content h4, .feature-content h4 {
+          font-size: 1.125rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          color: #f9fafb;
+        }
+        
+        .service-content p, .feature-content p {
+          font-size: 0.875rem;
+          color: #d1d5db;
+          margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+          .services-grid, .features-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
+      </section>
   );
 };
 
@@ -5297,7 +5356,6 @@ const ContactPage = () => {
       <section className="contact-page-header">
         <div className="container">
           <h1>Contact Me</h1>
-          <p>Let's discuss your project</p>
         </div>
       </section>
       
@@ -5462,8 +5520,7 @@ const Hero = () => {
             </h1>
 
             <p className="hero-description">
-              Helping businesses transform their digital presence with modern, accessible,
-              and high-performance applications.
+              Helping businesses transform their digital presence with modern, high-performance applications.
             </p>
 
             <div className="hero-buttons">
@@ -5561,8 +5618,7 @@ const Portfolio = () => {
       <section id="portfolio" className="portfolio section">
         <div className="container">
           <div className="section-title">
-            <h2>Projects</h2>
-            <p>Check out some of my recent projects</p>
+            <h2>Applications</h2>
           </div>
           <div className="loading-spinner" aria-label="Loading projects">
             <div className="spinner"></div>
@@ -5577,8 +5633,7 @@ const Portfolio = () => {
       <section id="portfolio" className="portfolio section">
         <div className="container">
           <div className="section-title">
-            <h2>Projects</h2>
-            <p>Check out some of my recent projects</p>
+            <h2>Applications</h2>
           </div>
           <div className="error-message" role="alert">
             {error}
@@ -5592,8 +5647,7 @@ const Portfolio = () => {
     <section id="portfolio" className="portfolio section">
       <div className="container">
         <div className="section-title">
-          <h2>Projects</h2>
-          <p>Check out some of my recent projects</p>
+          <h2>Applications</h2>
         </div>
 
         <div className="portfolio-filters">
@@ -5687,11 +5741,10 @@ const PortfolioHome = () => {
         <div className="container">
           <div className="section-title">
             <h2>Featured Projects</h2>
-            <p>Check out some of my recent work</p>
           </div>
           <div className="loading-spinner-container">
             <div className="spinner"></div>
-            <p>Loading projects...</p>
+            <p>Loading...</p>
           </div>
         </div>
       </section>
@@ -5704,7 +5757,6 @@ const PortfolioHome = () => {
         <div className="container">
           <div className="section-title">
             <h2>Featured Projects</h2>
-            <p>Check out some of my recent work</p>
           </div>
           <div className="error-message" role="alert">
             {error}
@@ -5822,19 +5874,19 @@ const Services = () => {
     },
     {
       id: 'consulting',
-      title: 'Technical Consulting',
+      title: 'SEO & Marketing',
       icon: 'fas fa-lightbulb',
-      shortDescription: 'Expert guidance on technology solutions, architecture, and digital transformation strategies.',
-      longDescription: 'I provide technical consulting services to help businesses make informed decisions about their digital strategies. Whether you need guidance on technology selection, architecture design, or performance optimization, I offer expert advice based on years of industry experience. My goal is to help you leverage technology effectively to meet your business objectives.',
+      shortDescription: 'Expert strategies for SEO, digital marketing, and online brand growth.',
+      longDescription: 'I provide SEO and marketing services to help businesses enhance their online presence and drive growth. From keyword research and content optimization to comprehensive digital marketing campaigns, I offer tailored strategies based on industry expertise. My goal is to boost your visibility, attract the right audience, and achieve measurable results.',
       features: [
-        'Technology stack evaluation',
-        'Architecture planning',
-        'Performance audit and optimization',
-        'Code review and refactoring',
-        'Digital transformation strategy',
-        'Team training and mentoring'
+        'Keyword research and analysis',
+        'On-page and off-page SEO',
+        'Content marketing strategy',
+        'Social media advertising',
+        'Performance tracking and analytics',
+        'Brand awareness campaigns'
       ],
-      technologies: ['System Architecture', 'DevOps', 'CI/CD', 'Cloud Solutions', 'Security Best Practices', 'Scalability']
+      technologies: ['SEO Tools', 'Google Analytics', 'Content Management Systems', 'Social Media Platforms', 'Marketing Automation']
     }
   ];
   
@@ -5854,7 +5906,7 @@ const Services = () => {
     <section id="services" className="services-section">
       <div className="container">
         <div className="section-title">
-          <h2>Services</h2>
+          <h2>Solutions</h2>
         </div>
         
         <div className="services-container">
@@ -6803,7 +6855,6 @@ const AboutPage = () => {
       <section className="page-header">
         <div className="container">
           <h1>About Me</h1>
-          <p>Get to know my background and expertise</p>
         </div>
       </section>
       
@@ -6845,11 +6896,7 @@ const AboutPage = () => {
               <h3>Professional App Developer</h3>
               
               <p className="lead">
-                  I help businesses grow by building modern, accessible, and high-performance applications
-              </p>
-              
-              <p>
-                  With over 8 years of experience, I create exceptional digital experiences that are visually stunning, highly functional, and aligned with your business goals.
+                  With over 8 years of experience, I create exceptional digital experiences that are aligned with your business goals.
               </p>
 
               <div className="personal-info">
@@ -7026,7 +7073,6 @@ const ContactPage = () => {
         <section className="page-header">
           <div className="container">
             <h1>Contact Me</h1>
-            <p>Let's discuss your project</p>
           </div>
         </section>
 
@@ -9054,7 +9100,7 @@ const PortfolioPage = () => {
       <div className="loading-container">
         <div className="loading-spinner" aria-label="Loading projects">
           <div className="spinner"></div>
-          <p>Loading projects...</p>
+          <p>Loading...</p>
         </div>
       </div>
     );
@@ -9082,8 +9128,7 @@ const PortfolioPage = () => {
       
       <section className="page-header">
         <div className="container">
-          <h1>My Projects</h1>
-          <p>Explore my recent projects and case studies</p>
+          <h1>Applications</h1>
         </div>
       </section>
       
@@ -9452,7 +9497,7 @@ const ProjectPage = () => {
         <div className="loading-container">
           <div className="loading-spinner" aria-label="Loading project details">
             <div className="spinner"></div>
-            <p>Loading project details...</p>
+            <p>Loading details...</p>
           </div>
         </div>
     );

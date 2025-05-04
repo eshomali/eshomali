@@ -15,18 +15,18 @@ const Navbar = ({ isMobile = false, closeMobileMenu = () => {} }) => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const sectionId = section.getAttribute('id');
-        
+
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
           setActiveSection(sectionId);
         }
       });
     };
-    
+
     // Only add scroll event on homepage
     if (window.location.pathname === '/') {
       window.addEventListener('scroll', handleScroll);
     }
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -39,46 +39,55 @@ const Navbar = ({ isMobile = false, closeMobileMenu = () => {} }) => {
   };
 
   return (
-    <nav className={`main-nav ${isMobile ? 'mobile' : 'desktop'}`}>
-      <ul>
-        <li>
-          <NavLink 
-            to="/" 
-            className={({ isActive }) => isActive && !isMobile ? 'active' : ''}
-            onClick={handleClick}
-          >
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/about" 
-            className={({ isActive }) => isActive ? 'active' : ''}
-            onClick={handleClick}
-          >
-            About
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/portfolio" 
-            className={({ isActive }) => isActive ? 'active' : ''}
-            onClick={handleClick}
-          >
-            Applications
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/contact" 
-            className={({ isActive }) => isActive ? 'active' : ''}
-            onClick={handleClick}
-          >
-            Contact
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
+      <nav className={`main-nav ${isMobile ? 'mobile' : 'desktop'}`}>
+        <ul>
+          <li>
+            <NavLink
+                to="/"
+                className={({ isActive }) => isActive && !isMobile ? 'active' : ''}
+                onClick={handleClick}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+                to="/about"
+                className={({ isActive }) => isActive ? 'active' : ''}
+                onClick={handleClick}
+            >
+              About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+                to="/portfolio"
+                className={({ isActive }) => isActive ? 'active' : ''}
+                onClick={handleClick}
+            >
+              Applications
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+                to="/pricing"
+                className={({ isActive }) => isActive ? 'active' : ''}
+                onClick={handleClick}
+            >
+              Pricing
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+                to="/contact"
+                className={({ isActive }) => isActive ? 'active' : ''}
+                onClick={handleClick}
+            >
+              Contact
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
   );
 };
 
