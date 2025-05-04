@@ -29,7 +29,7 @@
   display: grid;
   grid-template-columns: 200px repeat(3, 1fr);
   gap: 2rem;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
 }
 
 .pricing-header-spacer {
@@ -40,9 +40,14 @@
   text-align: center;
   padding: 1.5rem;
   background-color: #1f2937;
-  border-radius: 1rem 1rem 0 0;
+  border-radius: 1rem;
   border: 1px solid #374151;
-  border-bottom: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-service-header:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .pricing-service-header h3 {
@@ -74,8 +79,35 @@
   display: grid;
   grid-template-columns: 200px repeat(3, 1fr);
   gap: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   position: relative;
+  padding-top: 2rem;
+}
+
+/* Break line before each tier section */
+.pricing-tier-row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(99, 102, 241, 0.3) 10%,
+    rgba(99, 102, 241, 0.3) 90%,
+    transparent
+  );
+}
+
+/* First tier doesn't need the line */
+.pricing-tier-row:first-of-type {
+  padding-top: 0;
+}
+
+.pricing-tier-row:first-of-type::before {
+  display: none;
 }
 
 /* Tier label - now a highlighted section */
@@ -299,6 +331,17 @@
   
   .pricing-notes ul {
     grid-template-columns: 1fr;
+  }
+  
+  /* Adjust break lines for mobile */
+  .pricing-tier-row::before {
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(99, 102, 241, 0.3) 5%,
+      rgba(99, 102, 241, 0.3) 95%,
+      transparent
+    );
   }
 }
 
