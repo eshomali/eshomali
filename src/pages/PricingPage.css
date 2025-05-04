@@ -39,7 +39,7 @@
 .pricing-service-header {
   text-align: center;
   padding: 1.5rem;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(99, 102, 241, 0.05));
+  background-color: #1f2937;
   border-radius: 1rem 1rem 0 0;
   border: 1px solid #374151;
   border-bottom: none;
@@ -90,12 +90,12 @@
   color: #f9fafb;
 }
 
-/* Individual pricing cards */
+/* Individual pricing cards - All now use featured styling */
 .pricing-card {
-  background-color: #1f2937;
+  background-color: rgba(99, 102, 241, 0.08);
   border-radius: 1rem;
   padding: 2rem;
-  border: 1px solid #374151;
+  border: 1px solid rgba(99, 102, 241, 0.3);
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -103,11 +103,6 @@
 .pricing-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.pricing-card.featured {
-  background-color: rgba(99, 102, 241, 0.08);
-  border-color: rgba(99, 102, 241, 0.3);
 }
 
 .featured-badge {
@@ -152,12 +147,12 @@
   display: flex;
   align-items: center;
   padding: 0.5rem 1rem;
-  background-color: rgba(31, 41, 55, 0.5);
+  background-color: rgba(99, 102, 241, 0.08);
   color: #e5e7eb;
   border-radius: 0.375rem;
   font-size: 0.8125rem;
   font-weight: 500;
-  border: 1px solid rgba(55, 65, 81, 0.5);
+  border: 1px solid rgba(99, 102, 241, 0.2);
   transition: all 0.2s ease;
 }
 
@@ -169,13 +164,8 @@
 }
 
 .pricing-card:hover .feature-tag {
-  background-color: rgba(31, 41, 55, 0.8);
-  border-color: rgba(99, 102, 241, 0.3);
-}
-
-.pricing-card.featured .feature-tag {
-  background-color: rgba(99, 102, 241, 0.08);
-  border-color: rgba(99, 102, 241, 0.2);
+  background-color: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.4);
 }
 
 .tier-button {
