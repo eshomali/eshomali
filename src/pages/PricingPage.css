@@ -380,18 +380,18 @@
   }
 
   .pricing-cards-grid {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
-    justify-content: center;
+    width: 100%;
   }
 
   .pricing-card {
-    padding: 1rem;
     width: 100%;
+    min-width: 0; /* Allows the cards to shrink below content size */
+    box-sizing: border-box;
+    word-break: break-word; /* Allow words to break to prevent overflow */
+    overflow-wrap: break-word;
   }
 
   .tier-label {
@@ -418,8 +418,8 @@
   }
 
   .setup-fee {
-    text-align: center;
-    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .setup-fee .amount {
@@ -428,14 +428,17 @@
   }
 
   .feature-tag {
+    word-break: break-word;
+    hyphens: auto;
     padding: 0.25rem 0.5rem;
     font-size: 0.7rem;
-    justify-content: flex-start;
+    display: flex;
+    align-items: flex-start; /* Align to top for better wrapping */
   }
 
   .feature-tag::before {
-    margin-right: 0.5rem;
     flex-shrink: 0;
+    margin-top: 0.2rem; /* Vertically align bullet with first line of text */
   }
 
   .pricing-notes {
@@ -495,13 +498,22 @@
   }
 
   .service-title {
-    display: block;
+    word-break: break-word;
+    hyphens: auto;
   }
 
   .setup-fee .label {
     font-size: 0.75rem;
     color: #9ca3af;
   }
+
+  .tier-features {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
 }
 
 .service-title {
@@ -590,16 +602,16 @@
   }
 
   .pricing-cards-grid {
-    gap: 0.125rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* minmax(0, 1fr) prevents overflow */
   }
 
   .pricing-card {
-    padding: 0.5rem;
+    padding: 0.5rem 0.25rem;
   }
 
   .feature-tag {
-    padding: 0.15rem 0.3rem;
-    font-size: 0.6rem;
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
   }
 
   .feature-tag::before {
