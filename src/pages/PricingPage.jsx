@@ -1,4 +1,3 @@
-// src/pages/PricingPage.jsx
 import { Helmet } from 'react-helmet-async';
 import Button from '../components/common/Button';
 import './PricingPage.css';
@@ -6,156 +5,81 @@ import './PricingPage.css';
 const PricingPage = () => {
   const pricingData = {
     webApp: {
-      title: 'Web App',
+      title: 'Website',
       monthlyFee: '$350',
       tiers: [
         {
-          name: 'Starter',
-          setupFee: '$449',
-          features: [
-            'Full website',
-            'Basic design',
-            'Standard SEO',
-            'Web Hosting',
-            'Security',
-            'Email Support',
-            'Analytics',
-            '3 Changes / month'
-          ]
-        },
-        {
-          name: 'Plus',
+          name: 'Pro',
           setupFee: '$599',
           features: [
-            'Custom multi-page website',
-            'Payment/CRM integrations',
-            'Advanced SEO & analytics',
-            'Responsive design',
-            'Email + AI support',
-            '5 changes/month'
+            'Custom Web App',
+            'Payment integration',
+            'AI Integration',
+            'Premium SEO & analytics',
+            'Responsive Design',
+            'Real-Time Data',
+            'High-Performance Hosting',
+            'Priority support'
           ],
           featured: true
-        },
-        {
-          name: 'Pro',
-          setupFee: '$749',
-          features: [
-            'Complex web app',
-            'Real-time data integrations',
-            'Premium SEO & analytics',
-            'High-performance hosting',
-            '7 changes/month',
-            'Priority support'
-          ]
         }
       ]
     },
     mobileApp: {
-      title: 'Mobile App',
+      title: 'Mobile Apps',
       monthlyFee: '$450',
       tiers: [
         {
-          name: 'Starter',
-          setupFee: '$1449',
-          features: [
-            'iOS or Android',
-            'Basic Interface',
-            'App Hosting',
-            'Security',
-            'Email support',
-            'Analytics',
-            '3 changes/month'
-          ]
-        },
-        {
-          name: 'Plus',
+          name: 'Pro',
           setupFee: '$1999',
           features: [
-            'Custom cross-platform app',
-            'iOS + Android',
-            'Push notifications',
-            'Social media integrations',
-            'Enhanced UI/UX',
-            'Email + chat support',
+            'Apple Mobile App',
+            'Android Mobile App',
+            'Push Notifications',
+            'Advanced AI features',
+            'Social Media',
+            'Enhanced Design',
+            'Email Support',
+            'Chat Integration',
             'Detailed analytics',
-            '5 changes/month'
+            'Priority support'
           ],
           featured: true
-        },
-        {
-          name: 'Pro',
-          setupFee: '$2449',
-          features: [
-            'Complex cross-platform app',
-            'Advanced AI features',
-            'Premium UI/UX',
-            'High scalability',
-            'Priority support',
-            'Comprehensive analytics',
-            '7 changes/month'
-          ]
         }
       ]
     },
     webMobileApp: {
-      title: 'Web + Mobile',
+      title: 'Web+Mobile',
       monthlyFee: '$600',
       tiers: [
         {
-          name: 'Starter',
-          setupFee: '$1749',
+          name: 'Pro',
+          setupFee: '$2449',
           features: [
-            'Basic multi-page website',
-            'Basic single-platform app',
-            'iOS or Android',
-            'Template design',
-            'Core functionality',
-            'Basic SEO',
-            'Hosting',
-            'Security updates',
-            'Email support',
-            'Analytics',
-            '3 changes/month'
-          ]
-        },
-        {
-          name: 'Plus',
-          setupFee: '$2199',
-          features: [
-            'Custom multi-page website',
-            'Custom cross-platform app',
-            'iOS + Android',
-            'Payment/CRM integrations',
-            'Push notifications',
-            'Advanced SEO & analytics',
-            'Enhanced UI/UX',
-            'Email + AI support',
-            'Detailed analytics',
-            '5 changes/month'
+            'Custom Web App',
+            'Apple Mobile App',
+            'Android Mobile App',
+            'Payment integration',
+            'Responsive Design',
+            'Real-Time Data',
+            'High-Performance',
+            'Push Notifications',
+            'Advanced AI features',
+            'Social Media',
+            'Enhanced Design',
+            'Email Support',
+            'Chat Integration',
+            'Premium SEO & analytics',
+            'Priority support'
           ],
           featured: true
-        },
-        {
-          name: 'Pro',
-          setupFee: '$2649',
-          features: [
-            'Complex web app',
-            'Complex cross-platform app',
-            'AI integrations',
-            'Premium SEO',
-            'High-performance hosting',
-            'Premium UI/UX',
-            'Priority support',
-            'Comprehensive analytics',
-            '7 changes/month'
-          ]
         }
       ]
     }
   };
 
-  // Create arrays for each tier level
-  const tiers = ['Starter', 'Plus', 'Pro'];
+  // Only Pro tier exists
+  const tiers = ['Pro'];
   const services = [pricingData.webApp, pricingData.mobileApp, pricingData.webMobileApp];
 
   return (
@@ -164,7 +88,7 @@ const PricingPage = () => {
           <title>Pricing | Essa Shomali - App Developer</title>
           <meta
               name="description"
-              content="Transparent pricing for web and mobile app development services. Choose from Starter, Plus, or Pro packages for your business needs."
+              content="Transparent pricing for web and mobile app development services. Choose our Pro package for your business needs."
           />
         </Helmet>
 
@@ -182,68 +106,65 @@ const PricingPage = () => {
               <p>Select the perfect plan for your business needs. All plans include hosting, maintenance, and regular updates.</p>
             </div>
 
-            {/* Service Type Headers */}
-            <div className="pricing-headers">
-              <div className="pricing-header-spacer"></div>
-              {services.map((service, index) => (
-                  <div key={index} className="pricing-service-header">
-                    <h3>{service.title}</h3>
-                    <div className="monthly-fee">
-                      <span className="amount">{service.monthlyFee}</span>
-                      <span className="period">/month</span>
-                    </div>
-                  </div>
-              ))}
+            {/* Pro Tier */}
+            <div className="pricing-tier-row">
+              <div className="tier-label">
+                <h4>Pro Package</h4>
+              </div>
+              <div className="pricing-cards-grid pricing-cards-grid-two">
+                {services.map((service, serviceIndex) => {
+                  const tier = service.tiers[0]; // Pro tier is at index 0
+                  return (
+                      <div
+                          key={serviceIndex}
+                          className={`pricing-card ${tier.featured ? 'featured' : ''}`}
+                      >
+                        <div className="service-title">
+                          {service.title === 'Web+Mobile' ? 'Web+Mobile' : service.title}
+                        </div>
+
+                        {tier.featured && <div className="featured-badge">Most Popular</div>}
+
+                        <div className="setup-fee">
+                          <br/>
+                          <h6 className="setup-title">{service.title}</h6>
+                          <span className="amount">{tier.setupFee}</span>
+                          <span className="label">Development Fee</span>
+                        </div>
+
+                        <div className="tier-features">
+                          {tier.features.map((feature, featureIndex) => (
+                              <span key={featureIndex} className="feature-tag">
+                          {feature}
+                        </span>
+                          ))}
+                        </div>
+                      </div>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Pricing Tiers */}
-            {tiers.map((tierName, tierIndex) => (
-                <div key={tierName} className="pricing-tier-row">
-                  <div className="tier-label">
-                    <h4>{tierName}</h4>
-                  </div>
-                  <div className="pricing-cards-grid">
-                    {services.map((service, serviceIndex) => {
-                      const tier = service.tiers[tierIndex];
-                      return (
-                          <div
-                              key={serviceIndex}
-                              className={`pricing-card ${tier.featured ? 'featured' : ''}`}
-                          >
-                            {/* Add service title for mobile */}
-                            <div className="service-title">
-                              {service.title === 'Web + Mobile App' ? 'Web + Mobile' : service.title}
-                            </div>
+            {/* Monthly Fee Services Comparison */}
+            <div className="pricing-notes monthly-services-comparison">
+              <h3>Monthly Fee</h3>
+              <div className="services-grid">
+                {services.map((service, index) => (
+                    <div key={index} className="service-column">
+                      <h3>{service.title}</h3>
+                      <div className="monthly-fee">
+                        <span className="amount">{service.monthlyFee}</span>
+                        <span className="period">/month</span>
+                      </div>
+                    </div>
+                ))}
+              </div>
 
-                            {tier.featured && <div className="featured-badge">Most Popular</div>}
-
-                            <div className="setup-fee">
-                              <br/>
-                              <h6 className="setup-title">{service.title}</h6>
-                              <span className="amount">{tier.setupFee}</span>
-                              <span className="label">Initial Setup Fee</span>
-                            </div>
-
-                            <div className="tier-features">
-                              {tier.features.map((feature, featureIndex) => (
-                                  <span key={featureIndex} className="feature-tag">
-                            {feature}
-                          </span>
-                              ))}
-                            </div>
-                          </div>
-                      );
-                    })}
-                  </div>
-                </div>
-            ))}
-
-            <div className="pricing-notes">
-              <h3>What’s Included in Your Monthly Fee?</h3>
+              <h3>What's Included in Your Monthly Fee?</h3>
               <ul>
                 <li><i className="fas fa-check"></i> Fully Managed Hosting & Infrastructure</li>
                 <li><i className="fas fa-check"></i> Ongoing Maintenance & Security</li>
-                <li><i className="fas fa-check"></i> Up to 3–7 Changes Per Month</li>
+                <li><i className="fas fa-check"></i> Up to 5–7 Changes Per Month</li>
                 <li><i className="fas fa-check"></i> Email & Transactional Systems</li>
                 <li><i className="fas fa-check"></i> Robust Search Engine Optimization</li>
                 <li><i className="fas fa-check"></i> Slick Marketing Tools</li>

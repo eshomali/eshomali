@@ -94,7 +94,7 @@ const AboutPage = () => {
                   to="/contact" 
                   variant="outline" 
                   size="medium"
-                  aria-label="Contact me"
+                  aria-label="Contact us"
                 >
                   <i className="fas fa-envelope" aria-hidden="true"></i> &nbsp; Contact Me
                 </Button>

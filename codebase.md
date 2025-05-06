@@ -164,7 +164,11 @@ dist-ssr
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="29fe4a03-0215-450b-aef7-3862b4149bb5" name="Changes" comment="" />
+    <list default="true" id="29fe4a03-0215-450b-aef7-3862b4149bb5" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/codebase.md" beforeDir="false" afterPath="$PROJECT_DIR$/codebase.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/PricingPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PricingPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/PricingPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/PricingPage.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -181,21 +185,21 @@ dist-ssr
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/dev/eshomali.github.io",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2024.3.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/dev/eshomali.github.io&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\WebStorm 2024.3.5\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -214,6 +218,8 @@ dist-ssr
       <workItem from="1745348257410" duration="5999000" />
       <workItem from="1745681239971" duration="9724000" />
       <workItem from="1746114205581" duration="7059000" />
+      <workItem from="1746379781746" duration="12761000" />
+      <workItem from="1746474801117" duration="11462000" />
     </task>
     <servers />
   </component>
@@ -2723,86 +2729,95 @@ import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
 import PortfolioPage from './pages/PortfolioPage';
 import ProjectPage from './pages/ProjectPage';
+import PricingPage from './pages/PricingPage';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 import './App.css';
 
 function App() {
-  const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    // Simulate initial loading delay (remove in production)
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000);
-    
-    return () => clearTimeout(timer);
-  }, []);
+    useEffect(() => {
+        // Simulate initial loading delay (remove in production)
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1000);
 
-  // Initial loading screen
-  if (loading) {
+        return () => clearTimeout(timer);
+    }, []);
+
+    // Initial loading screen
+    if (loading) {
+        return (
+            <div className="preloader">
+                <div className="preloader-inner">
+                    <div className="loader"></div>
+                    <div className="loading-text">Loading</div>
+                </div>
+            </div>
+        );
+    }
+
     return (
-      <div className="preloader">
-        <div className="preloader-inner">
-          <div className="loader"></div>
-          <div className="loading-text">Loading</div>
-        </div>
-      </div>
+        <Routes>
+            <Route
+                path="/"
+                element={
+                    <Layout>
+                        <HomePage />
+                    </Layout>
+                }
+            />
+            <Route
+                path="/about"
+                element={
+                    <Layout>
+                        <AboutPage />
+                    </Layout>
+                }
+            />
+            <Route
+                path="/portfolio"
+                element={
+                    <Layout>
+                        <PortfolioPage />
+                    </Layout>
+                }
+            />
+            <Route
+                path="/portfolio/:slug"
+                element={
+                    <Layout>
+                        <ProjectPage />
+                    </Layout>
+                }
+            />
+            <Route
+                path="/pricing"
+                element={
+                    <Layout>
+                        <PricingPage />
+                    </Layout>
+                }
+            />
+            <Route
+                path="/contact"
+                element={
+                    <Layout>
+                        <ContactPage />
+                    </Layout>
+                }
+            />
+            <Route
+                path="*"
+                element={
+                    <Layout>
+                        <NotFoundPage />
+                    </Layout>
+                }
+            />
+        </Routes>
     );
-  }
-
-  return (
-    <Routes>
-      <Route 
-        path="/" 
-        element={
-          <Layout>
-            <HomePage />
-          </Layout>
-        } 
-      />
-      <Route 
-        path="/about" 
-        element={
-          <Layout>
-            <AboutPage />
-          </Layout>
-        } 
-      />
-      <Route 
-        path="/portfolio" 
-        element={
-          <Layout>
-            <PortfolioPage />
-          </Layout>
-        } 
-      />
-      <Route 
-        path="/portfolio/:slug" 
-        element={
-          <Layout>
-            <ProjectPage />
-          </Layout>
-        } 
-      />
-      <Route 
-        path="/contact" 
-        element={
-          <Layout>
-            <ContactPage />
-          </Layout>
-        } 
-      />
-      <Route 
-        path="*" 
-        element={
-          <Layout>
-            <NotFoundPage />
-          </Layout>
-        } 
-      />
-    </Routes>
-  );
 }
 
 export default App;
@@ -3096,18 +3111,18 @@ const Navbar = ({ isMobile = false, closeMobileMenu = () => {} }) => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const sectionId = section.getAttribute('id');
-        
+
         if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
           setActiveSection(sectionId);
         }
       });
     };
-    
+
     // Only add scroll event on homepage
     if (window.location.pathname === '/') {
       window.addEventListener('scroll', handleScroll);
     }
-    
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
@@ -3120,46 +3135,55 @@ const Navbar = ({ isMobile = false, closeMobileMenu = () => {} }) => {
   };
 
   return (
-    <nav className={`main-nav ${isMobile ? 'mobile' : 'desktop'}`}>
-      <ul>
-        <li>
-          <NavLink 
-            to="/" 
-            className={({ isActive }) => isActive && !isMobile ? 'active' : ''}
-            onClick={handleClick}
-          >
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/about" 
-            className={({ isActive }) => isActive ? 'active' : ''}
-            onClick={handleClick}
-          >
-            About
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/portfolio" 
-            className={({ isActive }) => isActive ? 'active' : ''}
-            onClick={handleClick}
-          >
-            Applications
-          </NavLink>
-        </li>
-        <li>
-          <NavLink 
-            to="/contact" 
-            className={({ isActive }) => isActive ? 'active' : ''}
-            onClick={handleClick}
-          >
-            Contact
-          </NavLink>
-        </li>
-      </ul>
-    </nav>
+      <nav className={`main-nav ${isMobile ? 'mobile' : 'desktop'}`}>
+        <ul>
+          <li>
+            <NavLink
+                to="/"
+                className={({ isActive }) => isActive && !isMobile ? 'active' : ''}
+                onClick={handleClick}
+            >
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+                to="/about"
+                className={({ isActive }) => isActive ? 'active' : ''}
+                onClick={handleClick}
+            >
+              About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+                to="/portfolio"
+                className={({ isActive }) => isActive ? 'active' : ''}
+                onClick={handleClick}
+            >
+              Applications
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+                to="/pricing"
+                className={({ isActive }) => isActive ? 'active' : ''}
+                onClick={handleClick}
+            >
+              Pricing
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+                to="/contact"
+                className={({ isActive }) => isActive ? 'active' : ''}
+                onClick={handleClick}
+            >
+              Contact
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
   );
 };
 
@@ -9215,6 +9239,1307 @@ const PortfolioPage = () => {
 };
 
 export default PortfolioPage;
+```
+
+# src\pages\PricingPage.css
+
+```css
+/* src/pages/PricingPage.css */
+
+.pricing-section {
+  padding: 6rem 0;
+  background-color: #111827;
+  position: relative;
+}
+
+.pricing-cards-grid {
+  display: contents;
+}
+
+.pricing-intro {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pricing-intro h2 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  color: #f9fafb;
+  margin-bottom: 1rem;
+}
+
+.pricing-intro p {
+  color: #e5e7eb;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* Service headers row */
+.pricing-headers {
+  display: grid;
+  grid-template-columns: 200px repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.pricing-header-spacer {
+  /* Empty space for tier labels column */
+}
+
+.pricing-service-header {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: #1f2937;
+  border-radius: 1rem;
+  border: 1px solid #374151;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.pricing-service-header:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-service-header h3 {
+  font-size: 1.75rem;
+  color: #f9fafb;
+  margin-bottom: 0.5rem;
+}
+
+.monthly-fee {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.monthly-fee .amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #6366f1;
+}
+
+.monthly-fee .period {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+/* Pricing tier rows */
+.pricing-tier-row {
+  display: grid;
+  grid-template-columns: 200px repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+/* Vertical separator lines for desktop */
+@media (min-width: 993px) {
+  .pricing-service-header:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(99, 102, 241, 0.3) 20%,
+      rgba(99, 102, 241, 0.3) 80%,
+      transparent
+    );
+  }
+
+  .pricing-card:not(:first-child)::before {
+    content: '';
+    position: absolute;
+    left: -1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 90%;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      transparent,
+      rgba(99, 102, 241, 0.3) 10%,
+      rgba(99, 102, 241, 0.3) 90%,
+      transparent
+    );
+  }
+
+  /* Remove horizontal lines on desktop */
+  .pricing-tier-row::before {
+    display: none;
+  }
+
+  .pricing-tier-row {
+    padding-top: 0;
+  }
+}
+
+/* Tier label - now a highlighted section */
+.tier-label {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tier-label::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+  pointer-events: none;
+}
+
+.tier-label h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Individual pricing cards - All now use featured styling */
+.pricing-card {
+  background-color: rgba(99, 102, 241, 0.08);
+  border-radius: 1rem;
+  padding: 2rem;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.featured-badge {
+  position: absolute;
+  top: -1px;
+  right: 1rem;
+  background-color: #6366f1;
+  color: white;
+  padding: 0.25rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+
+.setup-fee {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.setup-fee .amount {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #f9fafb;
+  display: block;
+}
+
+.setup-fee .label {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+
+/* Feature list */
+.tier-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.feature-tag {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: rgba(99, 102, 241, 0.08);
+  color: #e5e7eb;
+  border-radius: 0.375rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  transition: all 0.2s ease;
+}
+
+.feature-tag::before {
+  content: '•';
+  margin-right: 0.75rem;
+  color: #6366f1;
+  font-size: 1rem;
+}
+
+.pricing-card:hover .feature-tag {
+  background-color: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.tier-button {
+  width: 100%;
+}
+
+/* Additional sections */
+.pricing-notes {
+  max-width: 800px;
+  margin: 4rem auto;
+  text-align: center;
+  padding: 3rem;
+  background-color: #1f2937;
+  border-radius: 1rem;
+  border: 1px solid #374151;
+}
+
+.pricing-notes h3 {
+  font-size: 1.5rem;
+  color: #f9fafb;
+  margin-bottom: 1.5rem;
+}
+
+.pricing-notes ul {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pricing-notes li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #e5e7eb;
+}
+
+.pricing-notes i {
+  color: #6366f1;
+  font-size: 1rem;
+}
+
+.pricing-cta {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3rem;
+  background-color: rgba(99, 102, 241, 0.05);
+  border-radius: 1rem;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.pricing-cta h3 {
+  font-size: 1.75rem;
+  color: #f9fafb;
+  margin-bottom: 1rem;
+}
+
+.pricing-cta p {
+  color: #e5e7eb;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .pricing-headers,
+  .pricing-tier-row {
+    grid-template-columns: 150px repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .tier-label {
+    padding: 0.875rem 1.25rem;
+  }
+
+  .tier-label h4 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Mobile layout with grid format */
+
+
+/* Tablet adjustments */
+@media (max-width: 768px) {
+  .pricing-headers {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+
+  .pricing-service-header {
+    padding: 1.25rem 0.5rem;
+  }
+
+  .pricing-service-header h3 {
+    font-size: 1.5rem;
+  }
+
+  .monthly-fee .amount {
+    font-size: 1.75rem;
+  }
+
+  .pricing-cards-grid {
+    gap: 0.75rem;
+  }
+
+  .pricing-card {
+    padding: 1.25rem;
+  }
+
+  .tier-features {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .services-grid {
+    gap: 1rem;
+  }
+
+  .service-column {
+    padding: 1rem;
+  }
+
+  .service-column h3 {
+    font-size: 1.25rem;
+  }
+
+  .service-column .monthly-fee .amount {
+    font-size: 1.5rem;
+  }
+
+}
+
+
+
+/* Small mobile adjustments */
+@media (max-width: 576px) {
+  .pricing-tier-row > div:not(.tier-label) {
+
+
+  }
+
+  .pricing-section .container {
+    padding: 0 0.75rem;
+  }
+
+  .pricing-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+
+  .pricing-card {
+    width: 100%;
+    min-width: 0; /* Allow cards to shrink below content size */
+    padding: 0.75rem 0.5rem;
+    box-sizing: border-box;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .tier-label {
+    padding: 0.75rem 1rem;
+    margin: 0 auto 1.5rem;
+    width: calc(100% - 1rem);
+    text-align: center;
+  }
+
+  .tier-label h4 {
+    font-size: 1.125rem;
+  }
+
+  .pricing-service-header {
+    padding: 1rem;
+    margin: 0 0.25rem; /* Add small margin to prevent edge touching */
+  }
+
+  .pricing-service-header h3 {
+    font-size: 1.25rem;
+  }
+
+  .monthly-fee .amount {
+    font-size: 1.5rem;
+  }
+
+  .setup-fee .amount {
+    font-size: 1.25rem;
+    display: block;
+  }
+
+  .feature-tag {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .feature-tag::before {
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+    margin-right: 0.4rem;
+  }
+
+  .pricing-notes {
+    padding: 1.5rem;
+  }
+
+  .pricing-notes ul {
+    grid-template-columns: 1fr;
+  }
+
+  .pricing-cta {
+    padding: 1.5rem;
+  }
+
+  .tier-button {
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    padding: 0.6rem 0.4rem;
+    width: 100%;
+  }
+
+  .pricing-headers {
+    display: none;
+  }
+
+  .pricing-service-header {
+    padding: 1rem 0.25rem;
+  }
+
+  .pricing-service-header h3 {
+    font-size: 1.125rem;
+    line-height: 1.2;
+  }
+
+  .monthly-fee {
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .monthly-fee .amount {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .monthly-fee .period {
+    font-size: 0.75rem;
+  }
+
+  .pricing-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .service-title {
+    display: block; /* Make sure it's visible */
+    font-size: 0.9rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color: #f9fafb;
+  }
+
+  .setup-fee {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .setup-fee .label {
+    font-size: 0.75rem;
+    color: #9ca3af;
+  }
+
+  .tier-features {
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .featured-badge {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.6rem;
+    right: 0.5rem;
+  }
+
+
+  .setup-title {
+    font-size: 0.75rem;
+  }
+
+  .services-grid {
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .service-column {
+    padding: 1rem 0.5rem;
+  }
+
+  .service-column h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .service-column .monthly-fee {
+    flex-direction: column;
+  }
+
+  .service-column .monthly-fee .amount {
+    font-size: 1.5rem;
+  }
+
+  .service-column .monthly-fee .period {
+    font-size: 0.7rem;
+  }
+
+}
+
+.service-title {
+  display: none;
+}
+
+.pricing-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.tier-features {
+  flex-grow: 1;
+}
+
+.tier-button {
+  margin-top: auto;
+}
+
+@media (max-width: 375px) {
+  .services-grid {
+    gap: 0.5rem;
+  }
+
+  .service-column {
+    padding: 0.75rem;
+  }
+
+  .service-column h3 {
+    font-size: 1rem;
+  }
+
+  .service-column .monthly-fee .amount {
+    font-size: 1.25rem;
+  }
+}
+
+/* Very small screen adjustments */
+@media (max-width: 360px) {
+  .pricing-tier-row > div:not(.tier-label) {
+    padding: 0 0.25rem;
+  }
+
+  .pricing-section .container {
+    padding: 0 0.25rem;
+  }
+
+  .pricing-cards-grid {
+    gap: 0.25rem;
+  }
+
+  .pricing-card {
+    padding: 0.75rem;
+  }
+
+  .feature-tag {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.65rem;
+  }
+
+  .feature-tag::before {
+    margin-right: 0.3rem;
+  }
+
+  .setup-fee .amount {
+    font-size: 1.125rem;
+  }
+
+  .tier-button {
+    font-size: 0.75rem;
+    padding: 0.5rem 0.25rem;
+  }
+
+  .pricing-headers {
+    gap: 0.25rem;
+  }
+
+  .pricing-service-header {
+    padding: 0.75rem 0.25rem;
+  }
+
+  .pricing-service-header h3 {
+    font-size: 1rem;
+  }
+
+  .monthly-fee .amount {
+    font-size: 1.25rem;
+  }
+
+  .pricing-cards-grid {
+    gap: 0.25rem;
+  }
+
+  .service-title {
+    font-size: 0.875rem;
+  }
+
+}
+
+@media (max-width: 320px) {
+  .pricing-tier-row {
+    padding: 0 0.125rem;
+  }
+
+  .pricing-cards-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)); /* minmax(0, 1fr) prevents overflow */
+  }
+
+  .pricing-card {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .feature-tag {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .feature-tag::before {
+    margin-right: 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  .setup-fee .amount {
+    font-size: 1rem;
+  }
+
+  .setup-fee .label {
+    font-size: 0.7rem;
+  }
+
+  .tier-button {
+    font-size: 0.7rem;
+    padding: 0.4rem 0.2rem;
+  }
+
+  .pricing-headers {
+    gap: 0.125rem;
+  }
+
+  .pricing-service-header {
+    padding: 0.5rem 0.125rem;
+    border-radius: 0.5rem;
+  }
+
+  .pricing-service-header h3 {
+    font-size: 0.875rem;
+    word-break: break-word;
+  }
+
+  .monthly-fee .amount {
+    font-size: 1.125rem;
+  }
+
+  .monthly-fee .period {
+    font-size: 0.625rem;
+  }
+
+  .service-column {
+    padding: 0.625rem;
+  }
+
+  .service-column h3 {
+    font-size: 0.875rem;
+  }
+
+  .service-column .monthly-fee .amount {
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .pricing-headers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    padding: 0;
+  }
+
+  .pricing-header-spacer {
+    display: none;
+  }
+
+  .pricing-service-header {
+    width: 100%;
+    padding: 1.5rem 1rem;
+    margin: 0;
+  }
+
+  .pricing-tier-row {
+    display: block;
+    margin-bottom: 4rem;
+    width: 100%;
+  }
+
+  /* Tier label centered above cards */
+  .tier-label {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 1.5rem;
+    text-align: center;
+  }
+
+  /* Grid layout for cards */
+  .pricing-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    width: 100%;
+    margin: 0;
+  }
+
+  /* Horizontal break lines for mobile */
+  .pricing-tier-row::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5%;
+    right: 5%;
+    height: 1px;
+    background: linear-gradient(
+            to right,
+            transparent,
+            rgba(99, 102, 241, 0.3) 10%,
+            rgba(99, 102, 241, 0.3) 90%,
+            transparent
+    );
+  }
+
+  /* First tier doesn't need the line */
+  .pricing-tier-row:first-of-type {
+    padding-top: 0;
+  }
+
+  .pricing-tier-row:first-of-type::before {
+    display: none;
+  }
+
+  .pricing-section .container {
+    width: 100%;
+    padding: 0 1rem;
+    margin: 0 auto;
+  }
+
+  .pricing-headers,
+  .pricing-cards-grid {
+    width: 100%;
+  }
+
+  /* Ensure all three service headers have equal width */
+  .pricing-service-header {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .services-grid {
+    gap: 1.5rem;
+  }
+
+  .service-column {
+    padding: 1.25rem;
+  }
+
+  .service-column h3 {
+    font-size: 1.5rem;
+  }
+
+  .service-column .monthly-fee .amount {
+    font-size: 1.75rem;
+  }
+}
+
+.pricing-section .container {
+  width: 100%;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+@media (max-width: 525px) {
+  /* Container adjustments */
+  .pricing-section .container {
+    padding: 0 0.5rem;
+  }
+
+  /* Better card spacing */
+  .pricing-cards-grid {
+    gap: 0.5rem;
+  }
+
+  /* Improve card readability */
+  .pricing-card {
+    padding: 1rem 0.625rem;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Service title improvements */
+  .service-title {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+    font-weight: 700;
+  }
+
+  /* Setup fee adjustments */
+  .setup-fee {
+    margin-bottom: 1rem;
+  }
+
+  .setup-fee .amount {
+    font-size: 1.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .setup-fee .label {
+    font-size: 0.8125rem;
+  }
+
+  /* Feature tag improvements */
+  .tier-features {
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .feature-tag {
+    padding: 0.4375rem 0.625rem;
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    border-radius: 0.375rem;
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: none;
+  }
+
+  .feature-tag::before {
+    content: '•';
+    margin-right: 0.5rem;
+    color: #6366f1;
+    font-size: 1rem;
+    margin-top: 0;
+    flex-shrink: 0;
+  }
+
+  /* Button improvements */
+  .tier-button {
+    font-size: 0.9375rem;
+    padding: 0.75rem 0.625rem;
+    margin-top: 0.75rem;
+  }
+
+  /* Tier label adjustments */
+  .tier-label {
+    margin-bottom: 1.5rem;
+    padding: 0.875rem 1.25rem;
+  }
+
+  .tier-label h4 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Specific adjustment for iPhone 12 Pro size */
+@media (min-width: 375px) and (max-width: 410px) {
+  /* Further reduce gaps to give more room to cards */
+  .pricing-cards-grid {
+    gap: 0.4rem;
+  }
+
+  /* Slightly reduce side padding to give more room to content */
+  .pricing-card {
+    padding: 1rem 0.5rem;
+  }
+
+  /* Reduce feature tag padding to fit more text */
+  .feature-tag {
+    padding: 0.375rem 0.5rem 0.375rem 0.375rem;
+  }
+}
+
+/* Medium-small mobile screens */
+@media (max-width: 420px) {
+  .pricing-cards-grid {
+    gap: 0.625rem;
+  }
+
+  .pricing-card {
+    padding: 0.875rem 0.625rem;
+  }
+
+  .service-title {
+    font-size: 1rem;
+  }
+
+  .setup-fee .amount {
+    font-size: 1.375rem;
+  }
+
+  .feature-tag {
+    padding: 0.375rem 0.5rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Small mobile screens */
+@media (max-width: 375px) {
+  .pricing-cards-grid {
+    gap: 0.5rem;
+  }
+
+  .pricing-card {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .service-title {
+    font-size: 0.9375rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .setup-fee .amount {
+    font-size: 1.25rem;
+  }
+
+  .feature-tag {
+    padding: 0.3125rem 0.4375rem;
+    font-size: 0.6875rem;
+  }
+
+  .tier-button {
+    font-size: 0.875rem;
+    padding: 0.625rem 0.5rem;
+  }
+}
+
+/* Very small mobile screens */
+@media (max-width: 320px) {
+  .pricing-cards-grid {
+    gap: 0.375rem;
+  }
+
+  .pricing-card {
+    padding: 0.625rem 0.375rem;
+  }
+
+  .service-title {
+    font-size: 0.875rem;
+  }
+
+  .setup-fee .amount {
+    font-size: 1.125rem;
+  }
+
+  .feature-tag {
+    padding: 0.25rem 0.375rem;
+    font-size: 0.625rem;
+  }
+
+  .tier-button {
+    font-size: 0.8125rem;
+    padding: 0.5rem 0.375rem;
+  }
+}
+
+/* Monthly Services Comparison Section */
+.monthly-services-comparison {
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  width: auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.service-column {
+  background-color: #1f2937;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid #374151;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-column:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.service-column h3 {
+  font-size: 1.75rem;
+  color: #f9fafb;
+  margin-bottom: 0.5rem;
+}
+
+.service-column .monthly-fee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.service-column .monthly-fee .amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #6366f1;
+}
+
+.service-column .monthly-fee .period {
+  font-size: 0.875rem;
+  color: #9ca3af;
+}
+```
+
+# src\pages\PricingPage.jsx
+
+```jsx
+import { Helmet } from 'react-helmet-async';
+import Button from '../components/common/Button';
+import './PricingPage.css';
+
+const PricingPage = () => {
+  const pricingData = {
+    webApp: {
+      title: 'Website',
+      monthlyFee: '$350',
+      tiers: [
+        {
+          name: 'Pro',
+          setupFee: '$599',
+          features: [
+            'Custom Web App',
+            'Payment integration',
+            'AI Integration',
+            'Premium SEO & analytics',
+            'Responsive Design',
+            'Real-Time Data',
+            'High-Performance Hosting',
+            'Priority support'
+          ],
+          featured: true
+        }
+      ]
+    },
+    mobileApp: {
+      title: 'Mobile App',
+      monthlyFee: '$450',
+      tiers: [
+        {
+          name: 'Pro',
+          setupFee: '$1999',
+          features: [
+            'Apple Mobile App',
+            'Android Mobile App',
+            'Push Notifications',
+            'Advanced AI features',
+            'Social Media',
+            'Enhanced Design',
+            'Email Support',
+            'Chat Integration',
+            'Detailed analytics',
+            'Priority support'
+          ],
+          featured: true
+        }
+      ]
+    },
+    webMobileApp: {
+      title: 'Web+Mobile',
+      monthlyFee: '$600',
+      tiers: [
+        {
+          name: 'Pro',
+          setupFee: '$2449',
+          features: [
+            'Custom Web App',
+            'Apple Mobile App',
+            'Android Mobile App',
+            'Payment integration',
+            'Responsive Design',
+            'Real-Time Data',
+            'High-Performance',
+            'Push Notifications',
+            'Advanced AI features',
+            'Social Media',
+            'Enhanced Design',
+            'Email Support',
+            'Chat Integration',
+            'Premium SEO & analytics',
+            'Priority support'
+          ],
+          featured: true
+        }
+      ]
+    }
+  };
+
+  // Only Pro tier exists
+  const tiers = ['Pro'];
+  const services = [pricingData.webApp, pricingData.mobileApp, pricingData.webMobileApp];
+
+  return (
+      <>
+        <Helmet>
+          <title>Pricing | Essa Shomali - App Developer</title>
+          <meta
+              name="description"
+              content="Transparent pricing for web and mobile app development services. Choose our Pro package for your business needs."
+          />
+        </Helmet>
+
+        <section className="page-header">
+          <div className="container">
+            <h1>Pricing Plans</h1>
+            <p>Transparent pricing for quality development services</p>
+          </div>
+        </section>
+
+        <section className="pricing-section">
+          <div className="container">
+            <div className="pricing-intro">
+              <h2>Choose Your Development Package</h2>
+              <p>Select the perfect plan for your business needs. All plans include hosting, maintenance, and regular updates.</p>
+            </div>
+
+            {/* Pro Tier */}
+            <div className="pricing-tier-row">
+              <div className="tier-label">
+                <h4>Pro Package</h4>
+              </div>
+              <div className="pricing-cards-grid pricing-cards-grid-two">
+                {services.map((service, serviceIndex) => {
+                  const tier = service.tiers[0]; // Pro tier is at index 0
+                  return (
+                      <div
+                          key={serviceIndex}
+                          className={`pricing-card ${tier.featured ? 'featured' : ''}`}
+                      >
+                        <div className="service-title">
+                          {service.title === 'Web+Mobile' ? 'Web+Mobile' : service.title}
+                        </div>
+
+                        {tier.featured && <div className="featured-badge">Most Popular</div>}
+
+                        <div className="setup-fee">
+                          <br/>
+                          <h6 className="setup-title">{service.title}</h6>
+                          <span className="amount">{tier.setupFee}</span>
+                          <span className="label">Development Fee</span>
+                        </div>
+
+                        <div className="tier-features">
+                          {tier.features.map((feature, featureIndex) => (
+                              <span key={featureIndex} className="feature-tag">
+                          {feature}
+                        </span>
+                          ))}
+                        </div>
+                      </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Monthly Fee Services Comparison */}
+            <div className="pricing-notes monthly-services-comparison">
+              <h3>Monthly Fee</h3>
+              <div className="services-grid">
+                {services.map((service, index) => (
+                    <div key={index} className="service-column">
+                      <h3>{service.title}</h3>
+                      <div className="monthly-fee">
+                        <span className="amount">{service.monthlyFee}</span>
+                        <span className="period">/month</span>
+                      </div>
+                    </div>
+                ))}
+              </div>
+
+              <h3>What's Included in Your Monthly Fee?</h3>
+              <ul>
+                <li><i className="fas fa-check"></i> Fully Managed Hosting & Infrastructure</li>
+                <li><i className="fas fa-check"></i> Ongoing Maintenance & Security</li>
+                <li><i className="fas fa-check"></i> Up to 5–7 Changes Per Month</li>
+                <li><i className="fas fa-check"></i> Email & Transactional Systems</li>
+                <li><i className="fas fa-check"></i> Robust Search Engine Optimization</li>
+                <li><i className="fas fa-check"></i> Slick Marketing Tools</li>
+                <li><i className="fas fa-check"></i> Comprehensive Support</li>
+                <li><i className="fas fa-check"></i> Flat, Predictable Pricing</li>
+              </ul>
+            </div>
+
+            <div className="pricing-cta">
+              <h3>Need a Custom Solution?</h3>
+              <p>Contact us for enterprise pricing and custom development packages tailored to your specific requirements.</p>
+              <Button to="/contact" variant="primary" size="large">
+                Contact Us
+              </Button>
+            </div>
+          </div>
+        </section>
+      </>
+  );
+};
+
+export default PricingPage;
 ```
 
 # src\pages\ProjectPage.css

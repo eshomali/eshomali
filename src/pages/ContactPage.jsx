@@ -94,7 +94,7 @@ const ContactPage = () => {
   return (
       <>
         <Helmet>
-          <title>Contact Me | Essa Shomali - App Developer</title>
+          <title>Contact Us | Essa Shomali - App Developer</title>
           <meta
               name="description"
               content="Get in touch with Essa Shomali for app development projects, consultations, or inquiries. I'm here to help bring your digital ideas to life."
@@ -103,7 +103,7 @@ const ContactPage = () => {
 
         <section className="page-header">
           <div className="container">
-            <h1>Contact Me</h1>
+            <h1>Contact Us</h1>
           </div>
         </section>
 

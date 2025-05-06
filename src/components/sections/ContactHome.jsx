@@ -96,6 +96,7 @@ const ContactHome = () => {
     <section id="contact" className="contact-section">
       <div className="container">
         <div className="section-title">
+          <br/>
           <h2>Get In Touch</h2>
         </div>
 

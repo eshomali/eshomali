@@ -36,7 +36,7 @@ const NotFoundPage = () => {
                 <li><Link to="/about">About Me</Link></li>
                 <li><Link to="/services/web-development">Web Development Services</Link></li>
                 <li><Link to="/services/mobile-apps">Mobile App Development</Link></li>
-                <li><Link to="/contact">Contact Me</Link></li>
+                <li><Link to="/contact">Contact Us</Link></li>
               </ul>
             </div>
           </div>

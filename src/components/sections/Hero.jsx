@@ -81,24 +81,6 @@ const Hero = () => {
               Helping businesses transform their digital presence with modern, high-performance applications.
             </p>
 
-            <div className="hero-buttons">
-              <Button
-                  to="/portfolio"
-                  variant="primary"
-                  size="large"
-                  aria-label="View my portfolio"
-              >
-                <i className="fas fa-eye" aria-hidden="true"></i> &nbsp; View My Work
-              </Button>
-              <Button
-                  to="/contact"
-                  variant="outline"
-                  size="large"
-                  aria-label="Contact me"
-              >
-                <i className="fas fa-envelope" aria-hidden="true"></i> &nbsp; Get In Touch
-              </Button>
-            </div>
           </div>
         </div>
 

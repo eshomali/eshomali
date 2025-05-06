@@ -211,9 +211,9 @@ const About = () => {
                 <Button
                     to="/contact"
                     variant="outline"
-                    aria-label="Contact me"
+                    aria-label="Contact Us"
                 >
-                  <i className="fas fa-envelope" aria-hidden="true"></i> &nbsp; Contact Me
+                  <i className="fas fa-envelope" aria-hidden="true"></i> &nbsp; Contact Us
                 </Button>
               </div>
             </div>

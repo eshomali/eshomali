@@ -98,7 +98,7 @@
     top: 50%;
     transform: translateY(-50%);
     height: 80%;
-    width: 1px;
+    width: 2px;
     background: linear-gradient(
       to bottom,
       transparent,
@@ -107,7 +107,7 @@
       transparent
     );
   }
-  
+
   .pricing-card:not(:first-child)::before {
     content: '';
     position: absolute;
@@ -124,12 +124,12 @@
       transparent
     );
   }
-  
+
   /* Remove horizontal lines on desktop */
   .pricing-tier-row::before {
     display: none;
   }
-  
+
   .pricing-tier-row {
     padding-top: 0;
   }
@@ -319,11 +319,11 @@
     grid-template-columns: 150px repeat(3, 1fr);
     gap: 1.5rem;
   }
-  
+
   .tier-label {
     padding: 0.875rem 1.25rem;
   }
-  
+
   .tier-label h4 {
     font-size: 1.25rem;
   }
@@ -366,17 +366,35 @@
     gap: 0.5rem;
   }
 
+  .services-grid {
+    gap: 1rem;
+  }
+
+  .service-column {
+    padding: 1rem;
+  }
+
+  .service-column h3 {
+    font-size: 1.25rem;
+  }
+
+  .service-column .monthly-fee .amount {
+    font-size: 1.5rem;
+  }
+
 }
+
+
 
 /* Small mobile adjustments */
 @media (max-width: 576px) {
   .pricing-tier-row > div:not(.tier-label) {
-    padding: 0 0.5rem; /* Add padding to prevent edge touching */
+
 
   }
 
   .pricing-section .container {
-    padding: 0 0.5rem;
+    padding: 0 0.75rem;
   }
 
   .pricing-cards-grid {
@@ -384,13 +402,16 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 0.5rem;
     width: 100%;
+    margin: 0 auto;
+    align-items: stretch;
   }
 
   .pricing-card {
     width: 100%;
-    min-width: 0; /* Allows the cards to shrink below content size */
+    min-width: 0; /* Allow cards to shrink below content size */
+    padding: 0.75rem 0.5rem;
     box-sizing: border-box;
-    word-break: break-word; /* Allow words to break to prevent overflow */
+    word-break: break-word;
     overflow-wrap: break-word;
   }
 
@@ -398,6 +419,7 @@
     padding: 0.75rem 1rem;
     margin: 0 auto 1.5rem;
     width: calc(100% - 1rem);
+    text-align: center;
   }
 
   .tier-label h4 {
@@ -417,28 +439,22 @@
     font-size: 1.5rem;
   }
 
-  .setup-fee {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
   .setup-fee .amount {
     font-size: 1.25rem;
     display: block;
   }
 
   .feature-tag {
-    word-break: break-word;
-    hyphens: auto;
-    padding: 0.25rem 0.5rem;
+    padding: 0.4rem 0.5rem;
     font-size: 0.7rem;
     display: flex;
-    align-items: flex-start; /* Align to top for better wrapping */
+    align-items: flex-start;
   }
 
   .feature-tag::before {
     flex-shrink: 0;
-    margin-top: 0.2rem; /* Vertically align bullet with first line of text */
+    margin-top: 0.1rem;
+    margin-right: 0.4rem;
   }
 
   .pricing-notes {
@@ -454,9 +470,10 @@
   }
 
   .tier-button {
-    margin-top: 1rem;
-    font-size: 0.875rem;
-    padding: 0.75rem 0.5rem;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    padding: 0.6rem 0.4rem;
+    width: 100%;
   }
 
   .pricing-headers {
@@ -487,10 +504,6 @@
     font-size: 0.75rem;
   }
 
-  .pricing-cards-grid {
-    align-items: stretch;
-  }
-
   .pricing-card {
     display: flex;
     flex-direction: column;
@@ -498,8 +511,18 @@
   }
 
   .service-title {
-    word-break: break-word;
-    hyphens: auto;
+    display: block; /* Make sure it's visible */
+    font-size: 0.9rem;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color: #f9fafb;
+  }
+
+  .setup-fee {
+    margin-bottom: 1rem;
+    text-align: center;
   }
 
   .setup-fee .label {
@@ -512,6 +535,43 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
+  }
+
+  .featured-badge {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.6rem;
+    right: 0.5rem;
+  }
+
+
+  .setup-title {
+    font-size: 0.75rem;
+  }
+
+  .services-grid {
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .service-column {
+    padding: 1rem 0.5rem;
+  }
+
+  .service-column h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .service-column .monthly-fee {
+    flex-direction: column;
+  }
+
+  .service-column .monthly-fee .amount {
+    font-size: 1.5rem;
+  }
+
+  .service-column .monthly-fee .period {
+    font-size: 0.7rem;
   }
 
 }
@@ -532,6 +592,24 @@
 
 .tier-button {
   margin-top: auto;
+}
+
+@media (max-width: 375px) {
+  .services-grid {
+    gap: 0.5rem;
+  }
+
+  .service-column {
+    padding: 0.75rem;
+  }
+
+  .service-column h3 {
+    font-size: 1rem;
+  }
+
+  .service-column .monthly-fee .amount {
+    font-size: 1.25rem;
+  }
 }
 
 /* Very small screen adjustments */
@@ -653,6 +731,18 @@
   .monthly-fee .period {
     font-size: 0.625rem;
   }
+
+  .service-column {
+    padding: 0.625rem;
+  }
+
+  .service-column h3 {
+    font-size: 0.875rem;
+  }
+
+  .service-column .monthly-fee .amount {
+    font-size: 1.125rem;
+  }
 }
 
 @media (max-width: 992px) {
@@ -678,7 +768,6 @@
   .pricing-tier-row {
     display: block;
     margin-bottom: 4rem;
-    padding-top: 2rem;
     width: 100%;
   }
 
@@ -748,6 +837,22 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+
+  .services-grid {
+    gap: 1.5rem;
+  }
+
+  .service-column {
+    padding: 1.25rem;
+  }
+
+  .service-column h3 {
+    font-size: 1.5rem;
+  }
+
+  .service-column .monthly-fee .amount {
+    font-size: 1.75rem;
   }
 }
 
@@ -942,4 +1047,56 @@
     font-size: 0.8125rem;
     padding: 0.5rem 0.375rem;
   }
+}
+
+/* Monthly Services Comparison Section */
+.monthly-services-comparison {
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  width: auto;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.service-column {
+  background-color: #1f2937;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  border: 1px solid #374151;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-column:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.service-column h3 {
+  font-size: 1.75rem;
+  color: #f9fafb;
+  margin-bottom: 0.5rem;
+}
+
+.service-column .monthly-fee {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.service-column .monthly-fee .amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #6366f1;
+}
+
+.service-column .monthly-fee .period {
+  font-size: 0.875rem;
+  color: #9ca3af;
 }
