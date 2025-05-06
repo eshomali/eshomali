@@ -15,7 +15,7 @@ const HomePricing = () => {
           <div className="pricing-overview">
             <h3>Simple, Transparent Pricing</h3>
             <p>
-              Choose the perfect development package for your business needs. 
+              Choose your package.
               All plans include professional development, hosting, maintenance, 
               and regular updates.
             </p>
@@ -26,7 +26,7 @@ const HomePricing = () => {
                   <i className="fas fa-code"></i>
                 </div>
                 <div className="highlight-content">
-                  <h4>Website</h4>
+                  <h4>Web App</h4>
                   <p>
                     <span>$599 Development Fee</span><br/>
                     <span>+</span><br/>

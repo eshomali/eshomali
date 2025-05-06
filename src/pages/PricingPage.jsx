@@ -5,7 +5,7 @@ import './PricingPage.css';
 const PricingPage = () => {
   const pricingData = {
     webApp: {
-      title: 'Website',
+      title: 'Web App',
       monthlyFee: '$350',
       tiers: [
         {
@@ -102,7 +102,7 @@ const PricingPage = () => {
         <section className="pricing-section">
           <div className="container">
             <div className="pricing-intro">
-              <h2>Choose Your Development Package</h2>
+              <h2>Choose Your Package</h2>
               <p>Select the perfect plan for your business needs. All plans include hosting, maintenance, and regular updates.</p>
             </div>
 
